@@ -74,8 +74,12 @@ WSGI_APPLICATION = 'LM.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'kid123',
+    'USER':'root',
+    'PASSWORD':'12808891',
+    'HOST':'',
+    'PORT':'3306',
     }
 }
 
@@ -122,3 +126,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 
 LOGIN_URL = '/login/'
+ALLOWED_HOSTS = [u'120.77.35.153',]

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from management.models import MyUser, Book, Img
+from management.models import *
 from django.core.urlresolvers import reverse
 from management.utils import permission_check
 
@@ -15,7 +15,7 @@ def index(request):
         'active_menu': 'homepage',
         'user': user,
     }
-    return render(request, 'management/index.html', content)
+    return render(request, 'base/index.html', content)
 
 
 def signup(request):
@@ -198,3 +198,24 @@ def add_img(request):
         'active_menu': 'add_img',
     }
     return render(request, 'management/add_img.html', content)
+
+@user_passes_test(permission_check) 
+def add_writing_task(request):
+    user = request.user
+    state = None                                                                                                                                   
+    if request.method == 'POST':                                                                                                                   
+        try:                                                                                                                                       
+            new_writing_task = WritingTask(                                                                                                                         
+                title=request.POST.get('title', ''),                                                                                             
+            )                                                                                                                                      
+            new_writing_task.save()                                                                                                                         
+        except:                                                                                                            
+            state = 'error'
+        else:                                                                                                                                      
+            state = 'success'                                                                                                                      
+    content = {                                                                                                                                    
+        'user': user,                                                                                                                              
+        'state': state,                                                                                                                            
+        'writing_task_list': WritingTask.objects.all(),                                                                                                           
+    }                                                                                                                                              
+    return render(request, 'management/add_writing_task.html', content)    
