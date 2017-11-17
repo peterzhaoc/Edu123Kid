@@ -15,7 +15,7 @@ def index(request):
         'active_menu': 'homepage',
         'user': user,
     }
-    return render(request, 'base.html', content)
+    return render(request, 'base/index.html', content)
 
 
 def signup(request):
