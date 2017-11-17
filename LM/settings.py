@@ -24,7 +24,7 @@ SECRET_KEY = 'iw06g3zbjko)_0h&d&byv%=&h7cf58x-x+%gc1k82w!0xp+ksm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [u'120.77.35.153',]
 
 # Application definition
 
@@ -126,4 +126,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 
 LOGIN_URL = '/login/'
-ALLOWED_HOSTS = [u'120.77.35.153',]
