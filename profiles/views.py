@@ -14,7 +14,7 @@ def index(request):
         'active_menu': 'homepage',
         'user': user,
     }
-    return render(request, 'profiles/index.html', content)
+    return render(request, 'index.html', content)
 
 def signup(request):
     if request.user.is_authenticated():
