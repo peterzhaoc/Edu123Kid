@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from django.contrib.staticfiles import views
 from django.contrib import admin
 from django.conf import settings
-from profiles.views.index as index
+from profiles.views import index
 
 urlpatterns = [
     url(r'^$', index, name='index'),
