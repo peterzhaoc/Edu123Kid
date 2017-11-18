@@ -9,5 +9,5 @@ from django.core.urlresolvers import reverse
 from writings.utils import permission_check
 
 def test(request):
-    content = BASE_DIR
+    content = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return render(request, 'Edu123Kid/test.html',content)
