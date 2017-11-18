@@ -8,16 +8,6 @@ from writings.models import *
 from django.core.urlresolvers import reverse
 from users.utils import permission_check
 
-
-def index(request):
-    user = request.user if request.user.is_authenticated() else None
-    content = {
-        'active_menu': 'homepage',
-        'user': user,
-    }
-    return render(request, 'users/index.html', content)
-
-
 def signup(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('homepage'))
