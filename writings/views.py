@@ -4,9 +4,9 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from management.models import *
+from writings.models import *
 from django.core.urlresolvers import reverse
-from management.utils import permission_check
+from writings.utils import permission_check
 
 
 def index(request):
@@ -15,7 +15,7 @@ def index(request):
         'active_menu': 'homepage',
         'user': user,
     }
-    return render(request, 'base/index.html', content)
+    return render(request, 'writings/index.html', content)
 
 
 def signup(request):

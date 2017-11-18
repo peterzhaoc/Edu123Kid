@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'management.apps.ManagementConfig',
+    'writings.apps.WritingsConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -49,7 +49,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'LM.urls'
+ROOT_URLCONF = 'Edu123Kid.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'LM.wsgi.application'
+WSGI_APPLICATION = 'Edu123Kid.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases

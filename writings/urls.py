@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from management import views
+from writings import views
 
 urlpatterns = [
     url(r'^$', views.index, name='homepage'),

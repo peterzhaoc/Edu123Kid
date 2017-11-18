@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from management.models import *
+from writings.models import *
 
 
 class MyUserInline(admin.StackedInline):
