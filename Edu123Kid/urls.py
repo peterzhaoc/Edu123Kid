@@ -2,10 +2,11 @@ from django.conf.urls import url, include
 from django.contrib.staticfiles import views
 from django.contrib import admin
 from django.conf import settings
-from profiles.views import index
+from Edu123Kid.views import test
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^test/', test),
     url(r'', include('writings.urls')),
     url(r'', include('profiles.urls')),
 ]
