@@ -6,7 +6,7 @@ from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from writings.models import *
 from django.core.urlresolvers import reverse
-from users.utils import permission_check
+from profiles.utils import permission_check
 
 def index(request):
     user = request.user if request.user.is_authenticated() else None
