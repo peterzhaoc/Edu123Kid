@@ -5,7 +5,6 @@ from django.conf import settings
 from profiles.views import index
 
 urlpatterns = [
-    url(r'^$', index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'', include('writings.urls')),
     url(r'', include('profiles.urls')),
