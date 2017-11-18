@@ -10,5 +10,6 @@ from django.core.urlresolvers import reverse
 import os
 
 def test(request):
-    content = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "0000" + os.path.join(BASE_DIR, 'static').replace('\\', '/')
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    content = BASE_DIR + "0000" + os.path.join(BASE_DIR, 'static').replace('\\', '/')
     return render(request, 'Edu123Kid/test.html',content)
