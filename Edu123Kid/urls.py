@@ -18,9 +18,10 @@ from django.contrib.staticfiles import views
 from django.contrib import admin
 from django.conf import settings
 
-urlpatterns = [
+urlpatterns = [url(r'^admin/', admin.site.urls),
     url(r'^admin/', admin.site.urls),
-    url(r'', include('writings.urls'))
+    url(r'', include('writings.urls')),
+    url(r'', include('users.urls')),
 ]
 
 if settings.DEBUG:
