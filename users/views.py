@@ -6,7 +6,7 @@ from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from writings.models import *
 from django.core.urlresolvers import reverse
-from writings.utils import permission_check
+from users.utils import permission_check
 
 
 def index(request):

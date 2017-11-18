@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'writings.apps.WritingsConfig',
-    'users.apps.UsersConfig',
+    'profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -126,4 +126,6 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 
-LOGIN_URL = '/users/login/'
+LOGIN_URL = '/profiles/login/'
+
+AUTH_PROFILE_MODULE = 'profiles.UserProfile'

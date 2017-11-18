@@ -1,16 +1,19 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from users.models import *
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+from .models import UserProfile
 
 
-class MyUserInline(admin.StackedInline):
-    model = MyUser
+class ProfileInline(admin.StackedInline):
+    model = UserProfile
+    max_num = 1
     can_delete = False
 
 
-class UserAdmin(BaseUserAdmin):
-    inlines = (MyUserInline,)
+class UserProfileAdmin(UserAdmin):
+    inlines = [ProfileInline, ]
 
 
 admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+admin.site.register(User, UserProfileAdmin)

@@ -29,7 +29,7 @@ class WritingTask(models.Model):
     author = models.CharField(max_length=128)
     publish_date = models.DateField()
     category = models.CharField(max_length=128)
-    state = models.IntegerField(blank=True,null=True,verbose_name='状态',choices=STATE_CHOICES,default=1)    
+    state = models.IntegerField(blank=True,null=True,verbose_name='状态',choices=STATE_CHOICES,default=0)    
 
     class META:
         ordering = ['state']
