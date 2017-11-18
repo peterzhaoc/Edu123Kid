@@ -11,5 +11,5 @@ import os
 
 def test(request):
     BASE_DIR1 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    BASE_DIR2 = BASE_DIR1 + "0000" + os.path.join(BASE_DIR, 'static').replace('\\', '/')
+    BASE_DIR2 = BASE_DIR1 + "0000" + os.path.join(BASE_DIR1, 'static').replace('\\', '/')
     return render(request, 'Edu123Kid/test.html')
