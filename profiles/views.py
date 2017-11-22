@@ -43,7 +43,7 @@ def signup(request):
         'state': state,
         'user': None,
     }
-    return render(request, 'management/signup.html', content)
+    return render(request, 'profiles/signup.html', content)
 
 
 def login(request):
@@ -64,7 +64,7 @@ def login(request):
         'state': state,
         'user': None
     }
-    return render(request, 'management/login.html', content)
+    return render(request, 'profiles/login.html', content)
 
 
 def logout(request):

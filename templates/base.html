@@ -60,6 +60,11 @@
 					<div class="col-xs-12 text-right">
 						<p class="num">Call: +86 18957073119</p>
 						<ul class="fh5co-social">
+                            {% if user %}
+                            <li><a href="#"><span>欢迎你，{{user}}</span></a></li>
+                            {% else %}
+                            <li class="btn-cta"><a href="signup"><span>注册</span></a></li>
+                            {% endif %}
 							<li><a href="#"><i class="icon-twitter"></i></a></li>
 							<li><a href="#"><i class="icon-dribbble"></i></a></li>
 							<li><a href="#"><i class="icon-github"></i></a></li>
@@ -74,7 +79,7 @@
 					<div class="col-xs-2">
 						<div id="fh5co-logo"><a href="index.html">越读悦写<span>.</span></a></div>
 					</div>
-					<div class="col-xs-11 text-right menu-1">
+					<div class="col-xs-10 text-right menu-1">
 						<ul>
 							<li><a href="index.html">主页</a></li>
 							<li><a href="courses.html">课程</a></li>
@@ -88,9 +93,13 @@
 									<li><a href="#">API</a></li>
 								</ul>
 							</li>
-							<li><a href="contact.html">联系我们</a></li>
-							<li class="btn-cta"><a href="#"><span>登陆</span></a></li>
-							<li class="btn-cta"><a href="#"><span>提交一篇作文</span></a></li>
+                            <li><a href="contact.html">联系我们</a></li>
+                            {% if user %}
+							<li class="btn-cta"><a href="logout"><span>登出</span></a></li>
+                            {% else %}
+                            <li class="btn-cta"><a href="login"><span>登陆</span></a></li>
+                            {% endif %}
+                            <li class="btn-cta"><a href="#"><span>提交一篇作文</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -105,8 +114,8 @@
                 <div class="col-md-8 col-md-offset-2 text-center">
                     <div class="display-t">
                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                            <h1>The Art of Teaching is the Art of Assisting Discovery</h1>
-                            <h2>Free html5 templates Made</h2>
+                            <h1>好作文 改出来！</h1>
+                            <h2>在线一对一作文辅导</h2>
                             <p>Take A Course<i class="icon-play"></i> Watch Video</a></p>
                         </div>
                     </div>
