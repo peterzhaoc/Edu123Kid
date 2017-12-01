@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
+from django.contrib import auth
 
 class Book(models.Model):
     name = models.CharField(max_length=128)
@@ -24,11 +26,11 @@ class WritingTask(models.Model):
     (3, u'终审中'),
     (4, u'已完成'),
     ]
-    title = models.CharField(max_length=128)
-    writingfile = models.FileField(upload_to='static/file')
-    author = models.CharField(max_length=128)
-    publish_date = models.DateField()
-    category = models.CharField(max_length=128)
+    title = models.CharField(blank=True,null=True,max_length=128)
+    writingfile = models.FileField(blank=True,null=True,upload_to='static/file')
+    author = models.ForeignKey(User)
+    publish_date = models.DateField(blank=True,null=True,)
+    category = models.CharField(blank=True,null=True,max_length=128)
     state = models.IntegerField(blank=True,null=True,verbose_name='状态',choices=STATE_CHOICES,default=0)    
 
     class META:

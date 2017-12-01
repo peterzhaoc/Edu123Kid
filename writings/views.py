@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from writings.models import *
+from writings.forms import *
 from django.core.urlresolvers import reverse
-from writings.utils import permission_check
+from profiles.utils import permission_check
+import json
 
 @user_passes_test(permission_check)
 def add_book(request):
@@ -109,20 +111,24 @@ def add_img(request):
 @user_passes_test(permission_check) 
 def add_writing_task(request):
     user = request.user
-    state = None                                                                                                                                   
-    if request.method == 'POST':                                                                                                                   
-        try:                                                                                                                                       
-            new_writing_task = WritingTask(                                                                                                                         
-                title=request.POST.get('title', ''),                                                                                             
-            )                                                                                                                                      
-            new_writing_task.save()                                                                                                                         
-        except:                                                                                                            
-            state = 'error'
-        else:                                                                                                                                      
-            state = 'success'                                                                                                                      
-    content = {                                                                                                                                    
-        'user': user,                                                                                                                              
-        'state': state,                                                                                                                            
-        'writing_task_list': WritingTask.objects.all(),                                                                                                           
-    }                                                                                                                                              
-    return render(request, 'management/add_writing_task.html', content)    
+    state = None
+    
+    if request.method == 'POST':
+        form = WritingTaskForm(request.POST,request.FILES)
+        if form.is_valid():
+            new_writing_task = WritingTask(
+            title=form.cleaned_data['title'],
+            writingfile=form.cleaned_data['writingfile'],
+            author=user,
+            )
+            new_writing_task.save()
+    else:
+        form = WritingTaskForm()
+
+    content = {
+        'user': user,
+        'state': state,
+        'writing_task_list': WritingTask.objects.all(),
+        'form': form,
+    }
+    return render(request, 'writings/add_writing_task.html', content)    

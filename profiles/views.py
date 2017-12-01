@@ -7,6 +7,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from writings.models import *
 from django.core.urlresolvers import reverse
 from profiles.utils import permission_check
+from .forms import *
+import json
 
 def index(request):
     user = request.user if request.user.is_authenticated() else None
@@ -20,9 +22,11 @@ def signup(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('homepage'))
     state = None
+    form = UserForm1()
     if request.method == 'POST':
-        password = request.POST.get('password', '')
-        repeat_password = request.POST.get('repeat_password', '')
+        form = UserForm1(request.POST)
+        password = form.password_1
+        repeat_password = form.password_2
         if password == '' or repeat_password == '':
             state = 'empty'
         elif password != repeat_password:
@@ -39,6 +43,7 @@ def signup(request):
                 new_my_user.save()
                 state = 'success'
     content = {
+        'form':form,
         'active_menu': 'homepage',
         'state': state,
         'user': None,
