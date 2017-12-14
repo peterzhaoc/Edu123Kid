@@ -1,4 +1,4 @@
-# -*- coding:utf-
+# -*- coding:utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
@@ -22,7 +22,7 @@ class UserType(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     usertype = models.OneToOneField(UserType, null=True)
-    nickname = models.CharField(max_length=16, default='', blank=True)
+    nickname = models.CharField(max_length=16, default='', blank=True, null=True)
     sex = models.IntegerField(default=0)
     bonus = models.IntegerField(default=0)
     balance = models.DecimalField(max_digits=8,decimal_places=2,default=0)
@@ -70,5 +70,5 @@ class MentorProfile(UserType):
                          ]
     permission = models.IntegerField(verbose_name='导师权限',choices=PERMISSION_CHOICES,default=0)
     prefer = models.IntegerField(verbose_name='倾向',choices=Prefer_CHOICES,default=2)
-    adept = models.TextField()
-    resume = models.TextField()
+    adept = models.TextField(blank=True, null=True)
+    resume = models.TextField(blank=True, null=True)

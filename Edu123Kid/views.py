@@ -44,7 +44,8 @@ def test(request):
             __business_id = uuid.uuid1()
             params = "{\"code\":\"888888\",\"product\":\"云通信\"}"
             html = send_sms(__business_id, request.POST['phone-number'], "越读悦写", "SMS_112465062", params)
-
+    else:
+        html = request.Get['q']
     return HttpResponse(html)
 
 

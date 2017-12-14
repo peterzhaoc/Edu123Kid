@@ -4,9 +4,11 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from writings.models import *
 from django.core.urlresolvers import reverse
 from profiles.utils import permission_check
+from .models import *
 from .forms import *
 import json
 
@@ -103,5 +105,14 @@ def set_password(request):
     }
     return render(request, 'management/set_password.html', content)
 
+@login_required
+def userprofile(request):
+    user = request.user
+    profile = user.userprofile
+    content = {
+        'user': user,
+        'profile': profile,
+    }
+    return render(request, 'profiles/user_profile.html', content)
 
 

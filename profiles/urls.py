@@ -3,6 +3,7 @@ from profiles import views
 
 urlpatterns = [
     url(r'^$', views.index, name='homepage'),
+    url(r'^profiles/userprofile/$', views.userprofile, name='userprofile'),
     url(r'^profiles/signup/$', views.signup, name='signup'),
     url(r'^profiles/login/$', views.login, name='login'),
     url(r'^profiles/logout/$', views.logout, name='logout'),

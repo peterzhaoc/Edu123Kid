@@ -10,16 +10,19 @@ class ProfileInline(admin.StackedInline):
     max_num = 1
     can_delete = False
 
-class UserTypeInline(admin.StackedInline):
-    model = UserProfile
-    max_num = 1
-    can_delete = False
-
 class UserProfileAdmin(UserAdmin):
     inlines = [ProfileInline, ]
 
+class UserProfileInline(admin.StackedInline):
+    model = UserProfile
+
+class StudentProfileAdmin(admin.ModelAdmin):
+    inlines = [UserProfileInline, ]
+
+class MentorProfileAdmin(admin.ModelAdmin):
+    inlines = [UserProfileInline, ]
 
 admin.site.unregister(User)
 admin.site.register(User, UserProfileAdmin)
-admin.site.register(StudentProfile)
-admin.site.register(MentorProfile)
+admin.site.register(StudentProfile, StudentProfileAdmin)
+admin.site.register(MentorProfile, MentorProfileAdmin)

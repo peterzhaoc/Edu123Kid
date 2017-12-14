@@ -1,6 +1,6 @@
-{% extends "management/base.html" %}
+{% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}查看图书{% endblock %}
+{% block title %}查看任务{% endblock %}
 
 {% block content %}
 
@@ -9,11 +9,11 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="col-md-2">
                     <div class="list-group">
-                        <a href="{% url 'view_book_list' %}" class="list-group-item" id="id_category_all">
-                            全部图书
+                        <a href="{% url 'view_writing_task_list' %}" class="list-group-item" id="id_category_all">
+                            全部任务
                         </a>
                         {% for category in category_list %}
-                            <a href="{% url 'view_book_list' %}?category={{ category }}" class="list-group-item"
+                            <a href="{% url 'view_writing_task_list' %}?category={{ category }}" class="list-group-item"
                                id="id_category_{{ category }}">
                                 {{ category }}
                             </a>
@@ -50,17 +50,17 @@
                             <th>书名</th>
                             <th>作者</th>
                             <th>出版日期</th>
-                            <th>定价</th>
+                            <th>状态</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for book in book_list %}
+                        {% for writing_task in writing_task_list %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
-                                <td><a href="{% url 'detail' %}?id={{ book.id }}">{{ book.name }}</a></td>
-                                <td>{{ book.author }}</td>
-                                <td>{{ book.publish_date|date:"Y-m-d" }}</td>
-                                <td>{{ book.price|floatformat:2 }}</td>
+                                <td><a href="{% url 'writing_task_detail' %}?id={{ writing_task.id }}">{{ writing_task.title }}</a></td>
+                                <td>{{ writing_task.author }}</td>
+                                <td>{{ writing_task.publish_date|date:"Y-m-d" }}</td>
+                                <td>{{ writing_task.state }}</td>
                             </tr>
                         {% empty %}
                             <tr>
@@ -71,17 +71,17 @@
                     </table>
                     <nav>
                         <ul class="pager">
-                            {% if book_list.has_previous %}
+                            {% if writing_task_list.has_previous %}
                                 <li class="previous"><a
-                                        href="?typ={{ query_category }}&page={{ book_list.previous_page_number }}">上一页</a>
+                                        href="?typ={{ query_category }}&page={{ writing_task_list.previous_page_number }}">上一页</a>
                                 </li>
                             {% else %}
                                 <li class="previous disabled"><a href="#">上一页</a></li>
                             {% endif %}
-                            第 {{ book_list.number }} / {{ book_list.paginator.num_pages }}页
-                            {% if book_list.has_next %}
+                            第 {{ writing_task_list.number }} / {{ writing_task_list.paginator.num_pages }}页
+                            {% if writing_task_list.has_next %}
                                 <li class="next"><a
-                                        href="?typ={{ query_category }}&page={{ book_list.next_page_number }}">下一页</a>
+                                        href="?typ={{ query_category }}&page={{ writing_task_list.next_page_number }}">下一页</a>
                                 </li>
                             {% else %}
                                 <li class="next disabled"><a href="#">下一页</a></li>
