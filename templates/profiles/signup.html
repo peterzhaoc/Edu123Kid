@@ -1,90 +1,210 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}注册{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href={% static 'css/demo.css'%}>
+    <link rel="stylesheet" href={% static 'css/common.css'%}>
+{% endblock %}
+{% block contentbody %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>vaptcha-float</title>
-    <link rel="stylesheet" href={% static 'css/main.css' %}>
-    <style>
-    #vaptchaContainer{
-        height: 46px;
-    }
-    </style>
-</head>
-
-<body>
-    <div class="login">
-        <form class="login-form" method="post" autocomplete="off">
-            <h1 class="title">登录</h1>
-            <div class="form-group">
-                <input type="text" class="form-control" name="phone" value="" placeholder="请输入手机号">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="请输入密码" name="password">
-            </div>
-            <div class="form-group">
-                <div id="vaptchaContainer">
-                    加载中。。。
+<div class="article float-demo article-active">
+    <div class="panel">
+        {% if state == 'verification_code_not_match' %}
+        <div class="well">
+            <h2 class="text-danger text-center">验证码错误</h2>
+        </div>
+        {% endif %}
+        <form method="POST" role="form" class="form-signin" autocomplete="off">
+            {% csrf_token %}
+        <div class="login-content">
+            <div class="phonenumber">
+                <input id="id_user_name" required name="phone_number" autocomplete="off" class="form-control bg-c has-error" type="tel" autofocus="" value="" placeholder="请输入手机号码" maxlength="13">
+                <div id="phonePrefix" class="area-code btn-group dropdown">
+                    <button id="btn-down" class="btn btn-down dropdown-toggle" type="button">
+                            CN +86
+                    </button>
+                    <!--[if !IE]><!-->
+                    <button class="btn dropdown-toggle-split dropdown-toggle btn-down" type="button">
+                        <a class="fa fa-angle-down"></a>
+                    </button>
+                    <!--<![endif]-->
+                        <ul class="dropdown-menu" style="display: none;">
+                            <li role="menuitem">
+                                <a class="dropdown-item">
+                                    CN +86
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a class="dropdown-item">
+                                    HK +852
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a class="dropdown-item">
+                                    USA +1
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a class="dropdown-item">
+                                    JP +81
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a class="dropdown-item">
+                                    KP +850
+                                </a>
+                            </li>
+                            <li role="menuitem">
+                                <a class="dropdown-item">
+                                    KR +82
+                                </a>
+                            </li>
+                        </ul>
                 </div>
             </div>
-            <button class="btn login-btn">登录</button>
+            <div name="send-code-div" class="code" style="display: none;">
+                <!--s-fail s-success-->
+                <input type="number" autocomplete="off" class="form-control bg-c" value="验证码" name= "verification_code" placeholder="验证码" maxlength="6">
+                    <button onclick="settime(this)"><h id="h_id">发送验证码</h></button>
+            </div>
+            <div id="vaptchaContainer"></div>
+            <div name="login-btn-div" style="display: none;">
+                <button name="signup-btn" class="btn btn btn-primary btn-block login-btn" id="submit" name= "register" value="注册">注册</button>
+            </div>
+        </div>
         </form>
     </div>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.vaptcha.com/v.js"></script>
-    <script>
-        var form = {
-            token: '',
-            challenge: '',
-            phone: '',
-            password: ''
+</div>
+{% endblock %}
+{% block script %}
+<script src="https://cdn.vaptcha.com/v.js"></script>
+<script>
+    $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}'},async:false,
+                })
+</script>
+<script>
+    var form = {
+        token: '',
+        challenge: '',
+        username: '',
+        password: ''
+    }
+$.get('/getVaptcha', function (r) {
+      var options = {
+      vid: r.vid,//站点id ,string,必选,
+      challenge: r.challenge,//验证流水号 ,string,必选,
+      container: $('#vaptchaContainer'),//验证码容器,element,必选,
+      type: "popup",//验证码类型,string,默认float,可选择float,popup,embed,
+      https: true,//是否是https , boolean,默认true,(false:http),
+      color:"#57ABFF",//点击式按钮的背景颜色,string
+      outage: '/admin',
+      success: function (token, challenge) {
+      //当验证成功时执行回调,function,参数token为string,必选,
+      //提交表单时将token，challenge一并提交，作为验证通过的凭证，服务端进行二次验证
+      form.token = token;
+      form.challenge = challenge;
+      $('div[name=send-code-div]').show();
+      },
+      fail: function () {
+      //验证失败时执行回调
+      //todo:执行人机验证失败后的事情
+      }
+      }
+      //vaptcha对象
+      var vaptcha_obj;
+      window.vaptcha(options, function (obj) {
+                     vaptcha_obj = obj;
+                     //执行初始化
+                     vaptcha_obj.init();
+                     });
+      }, 'json')
+      
+      $('.signup-btn').click(function(e){
+                            e.preventDefault();
+                            
+                            if (!form.token || !form.challenge) {
+                            alert('请进行人机验证');
+                            return false;
+                            }
+                            form.username = $('input[name=username]').val();
+                            form.password = $('input[name=password]').val();
+                            $.post('/profiles/login/',
+                                   $('form').serialize(),
+                                   function(state){
+                                   if(state=='success')
+                                   {
+                                       window.location = '/'
+                                   }
+                                   else
+                                   {
+                                       window.location = '/profiles/login/?state=not_exist_or_password_error'
+                                   }
+                                   });
+                            })
+</script>
+
+<script type="text/javascript">
+    var form =
+    {
+        phone_number: '',
+        verification_code: '',
+    }
+//倒计时
+var countdown=60;
+function settime(val)
+{
+    if(validatemobile($('input[name=phone_number]').val()))
+    {
+        var objh = document.getElementById("h_id");
+        form.phone_number = $('input[name=phone_number]').val();
+        form.verification_code = $('input[name=verification_code]').val();
+        if (countdown == 0)
+        {
+            val.removeAttribute("disabled");
+            objh.innerHTML = ("获取验证码");
+            countdown = 60;
+            return false;
         }
-        $.get('/getVaptcha', function (r) {
-            var options = {
-                vid: r.vid,//站点id ,string,必选,
-                challenge: r.challenge,//验证流水号 ,string,必选,
-                container: $('#vaptchaContainer'),//验证码容器,element,必选,
-                type: "float",//验证码类型,string,默认float,可选择float,popup,embed,
-                https: true,//是否是https , boolean,默认true,(false:http),
-                color:"#57ABFF",//点击式按钮的背景颜色,string
-                outage: '/admin',
-                success: function (token, challenge) {
-                //当验证成功时执行回调,function,参数token为string,必选,
-                    //提交表单时将token，challenge一并提交，作为验证通过的凭证，服务端进行二次验证
-                    form.token = token;
-                    form.challenge = challenge;
-                },
-                fail: function () {
-                //验证失败时执行回调
-                    //todo:执行人机验证失败后的事情
-                }
+        else
+        {
+            if(countdown == 60)
+            {
+                $('div[name=login-btn-div]').show();
+                $.post('/profiles/get_verification_code/',
+                       $('form').serialize());
             }
-            //vaptcha对象
-            var vaptcha_obj;
-            window.vaptcha(options, function (obj) {
-                vaptcha_obj = obj;
-                //执行初始化
-                vaptcha_obj.init();
-            });
-        }, 'json')
+            val.setAttribute("disabled", true);
+            objh.innerHTML = ("重新发送(" + countdown + ")");
+            countdown--;
+            setTimeout(function(){settime(val);},1000);
+        }
+    }
+}
 
-        $('.login-btn').click(function(e){
-            e.preventDefault();
-            
-            if (!form.token || !form.challenge) {
-                alert('请进行人机验证');
-                return false;
-            }
-            form.phone = $('input[name=phone]').val();
-            form.password = $('input[name=password]').val();
-            $.post('/admin', JSON.stringify(form), function(data){
-                alert(data.msg)
-            });
-        })
-    </script>
-</body>
-
-</html>
+function validatemobile(mobile)
+{
+    if(mobile.length==0)
+    {
+        alert('请输入手机号码！');
+        document.form1.mobile.focus();
+        return false;
+    }
+    if(mobile.length!=11)
+    {
+        alert('请输入有效的手机号码！');
+        document.form1.mobile.focus();
+        return false;
+    }
+    
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    if(!myreg.test(mobile))
+    {
+        alert('请输入有效的手机号码！');
+        document.form1.mobile.focus();
+        return false;
+    }
+    return true;
+}
+</script>
+{% endblock %}

@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'writings.apps.WritingsConfig',
     'profiles.apps.ProfilesConfig',
+    'home.apps.HomeConfig',
                   
     # 第三方插件
     # ...
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     'aliyunsdkdysmsapi',
     'aliyunsdkcore',
     'vaptchasdk',
+    #'djcelery',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -147,3 +149,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 LOGIN_URL = '/profiles/login/'
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'
+
+###配置Broker
+BROKER_URL = 'redis://127.0.0.1:6379/0'
+BROKER_TRANSPORT = 'redis'
+
+#import djcelery
+#djcelery.setup_loader()

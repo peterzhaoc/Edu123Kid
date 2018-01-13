@@ -5,116 +5,28 @@
 
 
 {% endblock %}
-{% block content %}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-10 col-sm-offset-1">
-                <table class="table table-striped table-responsive">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>星期一</th>
-                            <th>星期二</th>
-                            <th>星期三</th>
-                            <th>星期四</th>
-                            <th>星期五</th>
-                            <th>星期六</th>
-                            <th>星期七</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">8:00-9:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">9:00-10:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">10:00-11:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">11:00-12:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">13:00-14:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">14:00-15:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">15:00-16:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">16:00-17:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">17:00-18:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">18:00-19:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                        <tr>
-                            <th scope="row">19:00-20:00</th>
-                            {% for i in "xxxxxxx"%}
-                            <td>{{i}}</td>
-                            {% endfor %}
-                        </tr>
-                    </tbody>
-                </table>
+{% block contentbody %}
 
-            </div>
+<div class="tab-pane fade in active" id="t1">
+    <div class="content">
+        <div class="well">
+            {{ profileform.as_ul }}
         </div>
+        
+        {% if type %}
+        <div class="well">
+            {{ mentorform.as_ul}}
+        </div>
+        {% else %}
+        <div class="well">
+            {{ studentform.as_ul }}
+        </div>
+        {% endif %}
     </div>
+</div>
 
 {% endblock %}
 {% block script %}
-<script>
-    $(document).ready(function(){
-                      $('th').bind({
-                                   mouseenter: function(e) {
-                                   // Hover event handler
-                                   this.className="success";
-                                   },
-                                   mouseleave: function(e) {
-                                   // Hover event handler
-                                   
-                                   },
-                                   click: function(e) {
-                                   // Click event handler
-                                   
-                                   }
-                                   });
-                      });
-    </script>
+
 {% endblock %}

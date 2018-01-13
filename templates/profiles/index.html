@@ -1,320 +1,949 @@
-{% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}越读悦写{% endblock %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>越读悦写</title>
+		
+		<!-- Font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Roboto+Slab:300,400,700" rel="stylesheet">
 
-{% block content %}
-	<div id="fh5co-counter" class="fh5co-counters">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3 text-center animate-box">
-					<span class="fh5co-counter js-counter" data-from="0" data-to="32" data-speed="4" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">全国省市遍布学员</span>
-				</div>
-				<div class="col-md-3 text-center animate-box">
-					<span class="fh5co-counter js-counter" data-from="0" data-to="290" data-speed="40" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">优质导师</span>
-				</div>
-				<div class="col-md-3 text-center animate-box">
-					<span class="fh5co-counter js-counter" data-from="0" data-to="2039" data-speed="5000" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">付费学员</span>
-				</div> 
-				<div class="col-md-3 text-center animate-box">
-					<span class="fh5co-counter js-counter" data-from="0" data-to="100" data-speed="10" data-refresh-interval="50"></span>
-					<span class="fh5co-counter-label">一对一教学</span>
-				</div>
-			</div>
-		</div>
-	</div>
+		<!-- Css Plugin -->
+		<link rel="stylesheet" href={% static 'css/bootstrap.min.css'%}>
+		<link rel="stylesheet" href={% static 'css/font-awesome.min.css'%}>
+		<link rel="stylesheet" href={% static 'css/themify-icons.css'%}>
+		<link rel="stylesheet" href={% static 'css/owl.carousel.css'%}>
+		<link rel="stylesheet" href={% static 'css/owl.theme.css'%}>
+		<link rel="stylesheet" href={% static 'css/owl.transitions.css'%}>
+		<link rel="stylesheet" href={% static 'css/slick.css'%}>
+		<link rel="stylesheet" href={% static 'css/slider-pro.min.css'%}>
+		<link rel="stylesheet" href={% static 'css/jquery.mCustomScrollbar.css'%}>
+		<link rel="stylesheet" href={% static 'css/animate.css'%}>
+		<link rel="stylesheet" href={% static 'style.css'%}>
+		
+		<!-- View Responsive -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<div id="fh5co-explore" class="fh5co-bg-section">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Take A Course</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-				</div>
-			</div>
-		</div>		
-		<div class="fh5co-explore fh5co-explore1">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-push-5 animate-box">
-						<img class="img-responsive" src={% static 'images/work_1.png' %} alt="work">
-					</div>
-					<div class="col-md-4 col-md-pull-8 animate-box">
-						<div class="mt">
-							<h3>We Want You To Learn English</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							<ul class="list-nav">
-								<li><i class="icon-check2"></i>Far far away, behind the word</li>
-								<li><i class="icon-check2"></i>There live the blind texts</li>
-								<li><i class="icon-check2"></i>Separated they live in bookmarksgrove</li>
-							</ul>
-							<p><a class="btn btn-primary btn-lg popup-vimeo btn-video" href=""><i class="icon-play"></i> Watch Video</a></p>
+
+		
+	</head>
+	<body>
+		<div id="main-container">
+			<header class="kopa-header-01">
+				<div class="container">
+					<div class="top-header">
+						<div class="kopa-login">
+							<a href="/profiles/login">
+								<i class="fa fa-sign-in"></i>
+								登陆
+							</a>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="fh5co-explore">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-pull-1 animate-box">
-						<img class="img-responsive" src={% static 'images/work_1.png' %} alt="work">
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="mt">
-							<div>
-								<h4><i class="icon-user"></i>Real Project For Real Solutions</h4>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. </p>
-							</div>
-							<div>
-								<h4><i class="icon-video2"></i>Real Project For Real Solutions</h4>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-							</div>
-							<div>
-								<h4><i class="icon-shield"></i>Real Project For Real Solutions</h4>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia. </p>
-							</div>
+						<div class="kopa-register">
+							<a href="/profiles/signup">
+								<i class="fa fa-unlock"></i>
+								注册
+							</a>
 						</div>
+						<ul>
+                            <li>         </li>
+							<li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype"></i></a></li>
+						</ul>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div id="fh5co-project">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Showcase of A Finish Projects</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid proj-bottom">
-			<div class="row">
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src={% static 'images/project-1.jpg' %} alt="" class="img-responsive">
-						<h3>Web Master</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src={% static 'images/project-2.jpg' %} alt="" class="img-responsive">
-						<h3>Virtual Assistant</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src={% static 'images/project-3.jpg' %} alt="" class="img-responsive">
-						<h3>Read Bible</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src={% static 'images/project-9.jpg' %} alt="" class="img-responsive">
-						<h3>Programming</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src={% static 'images/project-5.jpg' %} alt="" class="img-responsive">
-						<h3>Technician</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-				<div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-					<a href="#"><img src={% static 'images/project-6.jpg' %} alt="" class="img-responsive">
-						<h3>Photography</h3>
-						<span>View Course</span>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="features">
-					<div class="col-md-4 animate-box">
-						<h4>We have coolest features of this course</h4>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  </p>
-					</div>
-					<div class="col-md-4 animate-box">
-						<h4>Great teachers that we have</h4>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  </p>
-					</div>
-					<div class="col-md-4 animate-box">
-						<h4>Steps by steps turorial session</h4>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.  </p>
-					</div>
-				</div>
-				<div class="col-md-12 text-center animate-box">
-					<p><a class="btn btn-primary btn-lg btn-learn" href="#">Create A Free Course</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="fh5co-steps">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Start A Course</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-				</div>
-			</div>
-
-			<div class="row bs-wizard animate-box" style="border-bottom:0;">
-                
-				<div class="col-xs-3 bs-wizard-step complete">
-					<div class="text-center bs-wizard-stepnum"><h4>Step 1</h4></div>
-					<div class="progress"><div class="progress-bar"></div></div>
-					<a href="#" class="bs-wizard-dot"></a>
-					<div class="bs-wizard-info text-center"><p>Create A Free Course</p></div>
-				</div>
-
-				<div class="col-xs-3 bs-wizard-step active"><!-- complete -->
-					<div class="text-center bs-wizard-stepnum"><h4>Step 2</h4></div>
-					<div class="progress"><div class="progress-bar"></div></div>
-					<a href="#" class="bs-wizard-dot"></a>
-					<div class="bs-wizard-info text-center"><p>Upload Content</p></div>
-				</div>
-
-				<div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
-					<div class="text-center bs-wizard-stepnum"><h4>Step 3</h4></div>
-					<div class="progress"><div class="progress-bar"></div></div>
-					<a href="#" class="bs-wizard-dot"></a>
-					<div class="bs-wizard-info text-center"><p>Make Your Course Beautiful</p></div>
-				</div>
-
-				<div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
-					<div class="text-center bs-wizard-stepnum"><h4>Step 4</h4></div>
-					<div class="progress"><div class="progress-bar"></div></div>
-					<a href="#" class="bs-wizard-dot"></a>
-					<div class="bs-wizard-info text-center"><p>Start Making Money</p></div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<div id="fh5co-testimonial" class="fh5co-bg-section">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>Testimonials</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div class="row animate-box">
-						<div class="owl-carousel owl-carousel-fullwidth">
-							<div class="item">
-								<div class="testimony-slide active text-center">
-									<figure>
-										<img src={% static 'images/person_1.jpg' %} alt="user">
-									</figure>
-									<span>Jean Doe, via <a href="#" class="twitter">Twitter</a></span>
-									<blockquote>
-										<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-									</blockquote>
-								</div>
+					<div class="bottom-header style-01">
+						<div class="clearfix">
+							<div class="pull-left">
+								<h1 class="kopa-logo">
+									<a href="#">
+										<img src={% static 'img/icon/logo.png'%} alt="">
+									</a>
+								</h1>
 							</div>
-							<div class="item">
-								<div class="testimony-slide active text-center">
-									<figure>
-										<img src={% static 'images/person_2.jpg' %} alt="user">
-									</figure>
-									<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
-									<blockquote>
-										<p>&ldquo;Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-									</blockquote>
+							<div class="pull-right">
+								<nav class="kopa-main-menu style-01">
+									<ul>
+										<li><a href="/">主页</a></li>
+                                        <li><a href="blog.html">学员佳作</a></li>
+										<li><a href="blog.html">博客</a></li>
+										<li><a href="about.html">关于我们</a></li>
+									</ul>
+								</nav>
+								<div class="kopa-search">
+									<button type="button">
+										<i class="fa fa-search"></i>
+									</button>
+									<input type="text" placeholder="Search..." class="">
 								</div>
-							</div>
-							<div class="item">
-								<div class="testimony-slide active text-center">
-									<figure>
-										<img src={% static 'images/person_3.jpg' %} alt="user">
-									</figure>
-									<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
-									<blockquote>
-										<p>&ldquo;Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-									</blockquote>
+								<div class="kopa-hamburger-menu">
+									<i class="fa fa-bars"></i>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</header>
+			<div id="kopa-menu-scroll">
+		        <div class="kopa-close-menu-scroll">
+		            <span>close x</span>
+		        </div>
+		        <div class="top-menu-scroll">
+		        	<div class="kopa-social-links style-03">
+					    <ul class="clearfix">
+					        <li><span>Social</span></li>
+					        <li><a href="#" class="fa fa-twitter"></a></li>
+					        <li><a href="#" class="fa fa-google-plus"></a></li>
+					        <li><a href="#" class="fa fa-rss"></a></li>
+					    </ul>
+					</div>
+			        <ul class="kopa-menu-click">
+			            <li><a href="index.html">Home</a></li>
+						<li><a href="about.html">About</a></li>
+						<li><a href="shop.html">Shop</a></li>
+						<li><a href="single-shop.html">Single-shop</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="single-blog.html">Single-blog</a></li>
+			        </ul>
+		        </div>
+		        <form>
+		        	<button type="submit" class="btn"><i class="fa fa-search"></i></button>
+		            <input type="text" placeholder="Search courses">
+		        </form>
+		        <div class="widget kopa-widget-banner">
+		        	<div class="widget-content module-banner-01">
+		        		<ul class="kopa-banner">
+				        	<li>
+				        		<span>100%</span>
+				        		<div>
+				        			<h4>MONEY BACK GUARANTEE</h4>
+				        			<p>No hassles, no question asked!</p>
+				        		</div>
+				        	</li>
+				        	<li>
+				        		<h4>EARN UP TO <span>35%</span></h4>
+				        		<p>Sign up our affiliate program</p>
+				        	</li>
+				        </ul>
+		        	</div>
+		        </div>
+		    </div>
+			<div id="main-content">
+				<section class="kopa-area-nospace">
+					<div class="widget kopa-widget-slider">
+						<div class="widget-content module-slider-01">
+							<div class="container">
+								<img src={% static 'images/main-slider/1.png'%} alt="">
+								<div class="content">
+									<h2>好作文 改出来！</h2>
+									<p>在线一对一作文辅导</p>
+									<a href="#" class="button-01">免费领取价值188元体验课</a>
+									<a href="#" class="button-01">我要报名</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area-nospace">
+					<div class="container">
+						<div class="widget kopa-widget-advanced_search">
+							<div class="widget-content module-advanced_search-01">
+								<div class="custom-bg-0"></div>
+								<div class="custom-bg">
+									<form>
+										<p class="arrow-select">
+											<select name="course-length">
+												<option value="*">Course Length</option>
+												<option value="1">Course Length 1</option>
+												<option value="2">Course Length 2</option>
+												<option value="3">Course Length 3</option>
+												<option value="4">Course Length 4</option>
+												<option value="5">Course Length 5</option>
+											</select>
+										</p>
+										<p class="arrow-select">
+											<select name="study-level">
+												<option value="*">Study Level</option>
+												<option value="1">Study Level 1</option>
+												<option value="2">Study Level 2</option>
+												<option value="3">Study Level 3</option>
+												<option value="4">Study Level 4</option>
+												<option value="5">Study Level 5</option>
+											</select>
+										</p>
+										<p><input type="text" placeholder="Keywords..."></p>
+										<p><button type="submit" class="button-01">Search Course</button></p>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-01">
+					<div class="container">
+						<div class="widget kopa-widget-features">
+							<header class="widget-header style-01">
+								<img src={% static 'img/icon/icon-header-1.png'%} alt="">
+								<h3 class="widget-title">AwESOME Features</h3>
+								<h4>We offer Students for better Learning</h4>
+							</header>
+							<div class="widget-content module-features-01">
+								<div class="row">
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<article class="entry-item">
+											<div class="custom">
+												<div class="entry-thumb">
+													<img src={% static 'img/icon/2.png'%} alt="">
+												</div>
+												<div class="entry-content">
+													<h4 class="entry-title">
+														<a href="#">Awesome Courses</a>
+													</h4>
+													<p>Lorem ipsum dolors item amet coti adipisicing elt, sed do eimd at.</p>
+													<a href="#" class="button-01">view detail</a>
+												</div>
+											</div>
+										</article>
+									</div>
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<article class="entry-item">
+											<div class="entry-thumb">
+												<img src={% static 'img/icon/3.png'%} alt="">
+											</div>
+											<div class="entry-content">
+												<h4 class="entry-title">
+													<a href="#">Experienced Teachers</a>
+												</h4>
+												<p>Lorem ipsum dolors item amet coti adipisicing elt, sed do eimd at.</p>
+												<a href="#" class="button-01">view detail</a>
+											</div>
+										</article>
+									</div>
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<article class="entry-item">
+											<div class="entry-thumb">
+												<img src={% static 'img/icon/4.png'%} alt="">
+											</div>
+											<div class="entry-content">
+												<h4 class="entry-title">
+													<a href="#">Practical Classes</a>
+												</h4>
+												<p>Lorem ipsum dolors item amet coti adipisicing elt, sed do eimd at.</p>
+												<a href="#" class="button-01">view detail</a>
+											</div>
+										</article>
+									</div>
+									<div class="col-md-3 col-sm-6 col-xs-12">
+										<article class="entry-item">
+											<div class="entry-thumb">
+												<img src={% static 'img/icon/5.png'%} alt="">
+											</div>
+											<div class="entry-content">
+												<h4 class="entry-title">
+													<a href="#">Validate Certificate</a>
+												</h4>
+												<p>Lorem ipsum dolors item amet coti adipisicing elt, sed do eimd at.</p>
+												<a href="#" class="button-01">view detail</a>
+											</div>
+										</article>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-02 white-text-style">
+					<div class="container">
+						<div class="widget kopa-widget-listcourse">
+							<header class="widget-header style-01">
+								<img src={% static 'img/icon/icon-header-2.png'%} alt="">
+								<h3 class="widget-title">Popular Courses</h3>
+								<h4>We have largest Collection Of Courses</h4>
+							</header>
+							<div class="widget-content module-listcourse-04">
+								<div class="row">
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<article class="entry-item kopa-item-course-01">
+											<div class="entry-thumb">
+												<a href="#">
+													<img src={% static 'images/list-course/1.jpg'%} alt="">
+													<i class="fa fa-link"></i>
+												</a>
+											</div>
+											<div class="entry-content">
+												<a href="#" class="course-category">Programming</a>
+												<h4 class="entry-title">
+													<a href="#">Introduction to Programming</a>
+												</h4>
+												<a href="#" class="course-author">By Ashiful Pappu, Senior Trainer</a>
+												<div class="course-price">
+													<span class="price">$ 319</span>
+													<div class="rating">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+													</div>
+												</div>
+												<ul class="course-detail">
+													<li>
+														<i class="fa fa-clock-o"></i>
+														3 Years
+													</li>
+													<li>
+														<i class="fa fa-user"></i>
+														127
+													</li>
+													<li>
+														<i class="fa fa-comments-o"></i>
+														12
+													</li>
+												</ul>
+											</div>
+										</article>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<article class="entry-item kopa-item-course-01">
+											<div class="entry-thumb">
+												<a href="#">
+													<img src={% static 'images/list-course/2.jpg'%} alt="">
+													<i class="fa fa-link"></i>
+												</a>
+											</div>
+											<div class="entry-content">
+												<a href="#" class="course-category">LItarature</a>
+												<h4 class="entry-title">
+													<a href="#">Histroy of  English LITERATURe </a>
+												</h4>
+												<a href="#" class="course-author">By Touhida Moni, Ast. Senior Trainer</a>
+												<div class="course-price">
+													<span class="price">$ 319</span>
+													<div class="rating">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+													</div>
+												</div>
+												<ul class="course-detail">
+													<li>
+														<i class="fa fa-clock-o"></i>
+														3 Years
+													</li>
+													<li>
+														<i class="fa fa-user"></i>
+														127
+													</li>
+													<li>
+														<i class="fa fa-comments-o"></i>
+														12
+													</li>
+												</ul>
+											</div>
+										</article>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<article class="entry-item kopa-item-course-01">
+											<div class="entry-thumb">
+												<a href="#">
+													<img src={% static 'images/list-course/3.jpg'%} alt="">
+													<i class="fa fa-link"></i>
+												</a>
+											</div>
+											<div class="entry-content">
+												<a href="#" class="course-category">Chemistry</a>
+												<h4 class="entry-title">
+													<a href="#">Basic of the organic chemistry</a>
+												</h4>
+												<a href="#" class="course-author">By Nil Wadud, Junior Trainer</a>
+												<div class="course-price">
+													<span class="price">$ 319</span>
+													<div class="rating">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+													</div>
+												</div>
+												<ul class="course-detail">
+													<li>
+														<i class="fa fa-clock-o"></i>
+														3 Years
+													</li>
+													<li>
+														<i class="fa fa-user"></i>
+														127
+													</li>
+													<li>
+														<i class="fa fa-comments-o"></i>
+														12
+													</li>
+												</ul>
+											</div>
+										</article>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-ara-03">
+					<div class="container">
+						<div class="widget kopa-widget-services">
+							<header class="widget-header style-01">
+								<img src={% static 'img/icon/icon-header-3.png'%} alt="">
+								<h3 class="widget-title">WHY Choose Us</h3>
+								<h4>We Have Unique Facilities for Students</h4>
+							</header>
+							<div class="widget-content module-services-01">
+								<div class="row">
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="row">
+											<div class="col-md-6 col-sm-6 col-xs-6">
+												<div class="kopa-item-services style-01">
+													<div class="content">
+														<img src={% static 'img/icon/6.png'%} alt="">
+														<a href="#">Online Research</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-6">
+												<div class="kopa-item-services style-02">
+													<div class="content">
+														<img src={% static 'img/icon/7.png'%} alt="">
+														<a href="#">Large e-library</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-6">
+												<div class="kopa-item-services style-03">
+													<div class="content">
+														<img src={% static 'img/icon/8.png'%} alt="">
+														<a href="#">Free Webinars</a>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-6">
+												<div class="kopa-item-services style-04">
+													<div class="content">
+														<img src={% static 'img/icon/9.png'%} alt="">
+														<a href="#">Creative Solution</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="kopa-item-services style-05">
+											<div class="content">
+												<img src={% static 'images/services/1.jpg'%} alt="">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-04 white-text-style">
+					<div class="container">
+						<div class="widget kopa-widget-facts">
+							<div class="widget-content module-facts-01">
+								<div class="row">
+									<div class="kopa-md-5">
+										<div class="facts-detail">
+											<i class="ti-book"></i>
+											<div class="detail">
+												<span class="intergers">32</span>
+                                                <span>个</span>
+												<p>全国省市遍布学员</p>
+											</div>
+										</div>
+									</div>
+									<div class="kopa-md-5">
+										<div class="facts-detail">
+											<i class="ti-user"></i>
+											<div class="detail">
+												<p>
+													<span class="intergers">200</span>
+													<span>+</span>
+												</p>
+												<p>优质导师</p>
+											</div>
+										</div>
+									</div>
+									<div class="kopa-md-5">
+										<div class="facts-detail">
+											<i class="ti-id-badge"></i>
+											<div class="detail">
+												<span class="intergers">1000</span>
+                                                <span>+</span>
+												<p>付费学员</p>
+											</div>
+										</div>
+									</div>
+									<div class="kopa-md-5">
+										<div class="facts-detail">
+											<i class="ti-filter"></i>
+											<div class="detail">
+												<span class="intergers">2571</span>
+												<p>Quiz & Test</p>
+											</div>
+										</div>
+									</div>
+									<div class="kopa-md-5">
+										<div class="facts-detail">
+											<i class="ti-cup"></i>
+											<div class="detail">
+												<span class="intergers">7412</span>
+												<p>Graduates</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-05">
+					<div class="container">
+						<div class="widget kopa-widget-list_event">
+							<header class="widget-header style-01">
+								<img src={% static 'img/icon/icon-header-4.png'%} alt="">
+								<h3 class="widget-title">Upcoming Events</h3>
+								<h4>We organize Lots of events & Seminars</h4>
+							</header>
+							<div class="widget-content module-list_event-01">
+								<div class="row">
+									<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+										<div class="entry-item">
+											<div class="entry-thumb">
+												<a href="#">
+													<img src={% static 'images/event/1.jpg'%} alt="">
+												</a>
+											</div>
+											<div class="entry-content">
+												<h4 class="entry-title">
+													<a href="#">Top 8 Ways to Make a Great Event Listing </a>
+												</h4>
+												<p>Lorem ipsum dolor sit amet, cetu adigi elit, sed do eiusmod a tempor incididt ut labore et.</p>
+												<ul class="event-time">
+													<li>
+														<i class="fa fa-map-marker"></i>
+														<span>Paathshaala Campus</span>
+													</li>
+													<li>
+														<i class="fa fa-clock-o"></i>
+														<span>09 Nov, 2016 @09:30 am</span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+										<div class="entry-item">
+											<div class="entry-thumb">
+												<a href="#">
+													<img src={% static 'images/event/2.jpg'%} alt="">
+												</a>
+											</div>
+											<div class="entry-content">
+												<h4 class="entry-title">
+													<a href="#">Top 8 Ways to Make a Great Event Listing </a>
+												</h4>
+												<p>Lorem ipsum dolor sit amet, cetu adigi elit, sed do eiusmod a tempor incididt ut labore et.</p>
+												<ul class="event-time">
+													<li>
+														<i class="fa fa-map-marker"></i>
+														<span>Main Seminar Room</span>
+													</li>
+													<li>
+														<i class="fa fa-clock-o"></i>
+														<span>13 Dec, 2016 @09:30 am</span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-06 white-text-style">
+					<div class="container">
+						<div class="widget kopa-widget-features">
+							<div class="widget-content module-features-02">
+								<div class="row">
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<img src={% static 'images/features/1.png'%} alt="">
+									</div>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<div class="features-detail">
+											<h2>Paathshaala is for Better Learning</h2>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor too incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostu an exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute for dolor in reprehenderit in voluptate velit esse cillum dolore eu. </p>
+											<ul>
+												<li>
+													<i class="fa fa-star"></i>
+													<a href="#">Ut enim ad minim veniam, quis nostu to the end</a>
+												</li>
+												<li>
+													<i class="fa fa-star"></i>
+													<a href="#">Nisi ut aliquip ex ea commodo consequat.</a>
+												</li>
+												<li>
+													<i class="fa fa-star"></i>
+													<a href="#">Duis aute iru dolor in reprehenderit edng otui.</a>
+												</li>
+											</ul>
+											<a href="#" class="button-01">Enroll NOW</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-07">
+					<div class="container">
+						<div class="widget kopa-widget-list_teachers">
+							<header class="widget-header style-01">
+								<img src={% static 'img/icon/icon-header-5.png'%} alt="">
+								<h3 class="widget-title">Our Teachers</h3>
+								<h4>We Have Skilled & Experienced Teachers</h4>
+							</header>
+							<div class="widget-content module-list_teachers-01">
+								<div class="row">
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="kopa-teacher-detail">
+											<img src={% static 'images/teachers/1.png'%} alt="">
+											<div class="teacher-detail style-01">
+												<h4>
+													<span></span>
+													<a href="#">Touhida Moni</a>
+												</h4>
+												<span class="teacher-position">Ast. Chief Trainer</span>
+												<div class="kopa-social-links">
+												    <ul class="clearfix">
+												        <li><a href="#" class="fa fa-facebook"></a></li>
+												        <li><a href="#" class="fa fa-twitter"></a></li>
+												        <li><a href="#" class="fa fa-google-plus"></a></li>
+												        <li><a href="#" class="fa fa-rss"></a></li>
+												    </ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="kopa-teacher-detail">
+											<img src={% static 'images/teachers/2.png'%} alt="">
+											<div class="teacher-detail style-02">
+												<h4>
+													<span></span>
+													<a href="#">Ashiful Pappu</a>
+												</h4>
+												<span class="teacher-position">Cheif Trainer</span>
+												<div class="kopa-social-links">
+												    <ul class="clearfix">
+												        <li><a href="#" class="fa fa-facebook"></a></li>
+												        <li><a href="#" class="fa fa-twitter"></a></li>
+												        <li><a href="#" class="fa fa-google-plus"></a></li>
+												        <li><a href="#" class="fa fa-rss"></a></li>
+												    </ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="kopa-teacher-detail">
+											<img src={% static 'images/teachers/3.png'%} alt="">
+											<div class="teacher-detail style-03">
+												<h4>
+													<span></span>
+													<a href="#">Abdul Wadud</a>
+												</h4>
+												<span class="teacher-position">Senior Trainer</span>
+												<div class="kopa-social-links">
+												    <ul class="clearfix">
+												        <li><a href="#" class="fa fa-facebook"></a></li>
+												        <li><a href="#" class="fa fa-twitter"></a></li>
+												        <li><a href="#" class="fa fa-google-plus"></a></li>
+												        <li><a href="#" class="fa fa-rss"></a></li>
+												    </ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-32">
+					<div class="container">
+						<div class="widget kopa-widget-videos">
+							<div class="widget-content module-videos-01 ">
+								<a href="#">
+									<i class="fa fa-play"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-05">
+					<div class="container">
+						<div class="widget kopa-widget-news">
+							<header class="widget-header style-01">
+								<img src={% static 'img/icon/icon-header-6.png'%} alt="">
+								<h3 class="widget-title">LAtest News</h3>
+								<h4>Get updated about our latest News</h4>
+							</header>
+							<div class="widget-content module-news-01">
+								<article class="entry-item">
+									<div class="entry-thumb">
+										<a href="#">
+											<img src={% static 'images/news/1.jpg'%} alt="">
+										</a>
+										<span class="entry-time">07:30pm, 20 Nov’16</span>
+									</div>
+									<div class="entry-content">
+										<h4 class="entry-title">
+											<a href="#">Career & job fair has been successfuly held in our paathshaala Campus</a>
+										</h4>
+										<div class="entry-meta">
+											<a href="#">by Admin</a>
+											<a href="#">in Campus News</a>
+										</div>
+
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodiu tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim iam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea co consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore gat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
+									</div>
+								</article>
+								<article class="entry-item style-01">
+									<div class="entry-thumb">
+										<a href="#">
+											<img src={% static 'images/news/2.jpg'%} alt="">
+										</a>
+										<span class="entry-time">07:30pm, 20 Nov’16</span>
+									</div>
+									<div class="entry-content">
+										<h4 class="entry-title">
+											<a href="#">Career & job fair has been successfuly held in our paathshaala Campus</a>
+										</h4>
+										<div class="entry-meta">
+											<a href="#">by Admin</a>
+											<a href="#">in Campus News</a>
+										</div>
+
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodiu tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim iam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea co consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore gat nulla pariatur. Excepteur sint occaecat cupidatat.</p>
+									</div>
+								</article>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-08 white-text-style">
+					<div class="container">
+						<div class="widget kopa-widget-testimonials style-01">
+							<header class="widget-header style-01">
+								<img src={% static 'img/icon/icon-header-7.png'%} alt="">
+							</header>
+							<div class="widget-content module-testimonials-01">
+								<div class="row">
+									<div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-2">
+										<div class="slider-for">
+											<div class="text-testi">
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus pretium rhoncus a quis nisly Ut vehicula gravida dui in pulvinar donec diam elit to the end.</p>
+												<a href="#">- Ashiful Pappu | 6th Batch, Business Faculty</a>
+											</div>
+											<div class="text-testi">
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus pretium rhoncus a quis nisly Ut vehicula gravida dui in pulvinar donec diam elit to the end consequateget augue vitae aliquet sollicitudin.</p>
+												<a href="#">- Ashiful Pappu | 6th Batch, Business Faculty</a>
+											</div>
+											<div class="text-testi">
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus pretium rhoncus a quis nisly Ut vehicula.</p>
+												<a href="#">- Ashiful Pappu | 6th Batch, Business Faculty</a>
+											</div>
+											<div class="text-testi">
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus pretium rhoncus.</p>
+												<a href="#">- Ashiful Pappu | 6th Batch, Business Faculty</a>
+											</div>
+											<div class="text-testi">
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus pretium rhoncus a quis nisly Ut vehicula gravida dui in pulvinar donec diam elit to the end consequateget augue vitae aliquet sollicitudin.</p>
+												<a href="#">- Ashiful Pappu | 6th Batch, Business Faculty</a>
+											</div>
+											<div class="text-testi">
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus pretium rhoncus a quis nisly Ut vehicula gravida dui in pulvinar donec diam elit..</p>
+												<a href="#">- Ashiful Pappu | 6th Batch, Business Faculty</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2">
+										<div class="slider-nav">
+											<div class="testi-thumb">
+												<img src={% static 'images/testimonial/1.jpg'%} alt="">
+											</div>
+											<div class="testi-thumb">
+												<img src={% static 'images/testimonial/2.jpg'%} alt="">
+											</div>
+											<div class="testi-thumb">
+												<img src={% static 'images/testimonial/3.jpg'%} alt="">
+											</div>
+											<div class="testi-thumb">
+												<img src={% static 'images/testimonial/4.jpg'%} alt="">
+											</div>
+											<div class="testi-thumb">
+												<img src={% static 'images/testimonial/2.jpg'%} alt="">
+											</div>
+											<div class="testi-thumb">
+												<img src={% static 'images/testimonial/1.jpg'%} alt="">
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="kopa-area kopa-area-09">
+					<div class="container">
+						<div class="widget kopa-widget-partners">
+							<div class="row">
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<header class="widget-header style-01">
+										<img src={% static 'img/icon/icon-header-8.png'%} alt="">
+										<h3 class="widget-title">Our Global partners</h3>
+										<h4>We Are Conected globally</h4>
+									</header>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-12">
+									<div class="widget-content module-partners-01">
+										<ul class="row">
+											<li class="col-md-4 col-sm-4 col-xs-6">
+												<div class="partner">
+													<a href="#"><img src={% static 'images/partners/1.png'%} alt=""></a>
+												</div>
+											</li>
+											<li class="col-md-4 col-sm-4 col-xs-6">
+												<div class="partner">
+													<a href="#"><img src={% static 'images/partners/2.png'%} alt=""></a>
+												</div>
+											</li>
+											<li class="col-md-4 col-sm-4 col-xs-6">
+												<div class="partner">
+													<a href="#"><img src={% static 'images/partners/3.png'%} alt=""></a>
+												</div>
+											</li>
+											<li class="col-md-4 col-sm-4 col-xs-6">
+												<div class="partner">
+													<a href="#"><img src={% static 'images/partners/3.png'%} alt=""></a>
+												</div>
+											</li>
+											<li class="col-md-4 col-sm-4 col-xs-6">
+												<div class="partner">
+													<a href="#"><img src={% static 'images/partners/4.png'%} alt=""></a>
+												</div>
+											</li>
+											<li class="col-md-4 col-sm-4 col-xs-6">
+												<div class="partner">
+													<a href="#"><img src={% static 'images/partners/5.png'%} alt=""></a>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 			</div>
+			<div class="bottom-sidebar style-01 white-text-style">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-sm-6 col-xs-12 col-md-push-4">
+							<div class="widget kopa-widget-logof">
+								<div class="widget-content">
+									<a href="#"><img src={% static 'img/icon/logo-2.png'%} alt=""></a>
+									<div class="kopa-social-links style-02">
+									    <ul class="clearfix">
+									        <li><a href="#" class="fa fa-facebook"></a></li>
+									        <li><a href="#" class="fa fa-twitter"></a></li>
+									        <li><a href="#" class="fa fa-google-plus"></a></li>
+									        <li><a href="#" class="fa fa-rss"></a></li>
+									    </ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6 col-xs-12 col-md-pull-4">
+							<div class="widget kopa-widget-tweets">
+								<h3 class="widget-title style-02">RECENT TWEETS</h3>
+								<div class="widget-content module-tweets-01">
+									<ul>
+										<li>
+											<i class="fa fa-twitter"></i>
+											<div class="tweets-detail">
+												<a href="#">
+													<span>@ASCETICDESIGNERS,</span>
+													Next Jobs Fair Will Be Held in Our Campus.
+												</a>
+												<span>5 Mins Ago</span>
+											</div>
+										</li>
+										<li>
+											<i class="fa fa-twitter"></i>
+											<div class="tweets-detail">
+												<a href="#">
+													<span>@ASHIFULPAPPU,</span>
+													Build Your Career at Our Paathshaala Faculties.
+												</a>
+												<span>25 Mins Ago</span>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="widget kopa-widget-useful">
+								<h3 class="widget-title style-03">useful links</h3>
+								<div class="widget-content">
+									<ul>
+										<li><a href="#">All Our Course</a></li>
+										<li><a href="#">Event Calendar</a></li>
+										<li><a href="#">Customer Support</a></li>
+										<li><a href="#">Career at Paathshaala</a></li>
+										<li><a href="#">Terms & Conditions</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="kopa-footer style-01">
+				<div class="container">
+					<p>Copyright &copy; 2017.Company name All rights reserved.</p>
+				</div>
+			</footer>
 		</div>
-	</div>
 
-	<div id="fh5co-blog">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Recent Post</h2>
-					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#"><img class="img-responsive" src={% static 'images/project-4.jpg' %} alt=""></a>
-						<div class="blog-text">
-							<h3><a href=""#>45 Minimal Workspace Rooms for Web Savvys</a></h3>
-							<span class="posted_on">Nov. 15th</span>
-							<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							<a href="#" class="btn btn-primary">Read More</a>
-						</div> 
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#"><img class="img-responsive" src={% static 'images/project-2.jpg' %} alt=""></a>
-						<div class="blog-text">
-							<h3><a href=""#>45 Minimal Worksspace Rooms for Web Savvys</a></h3>
-							<span class="posted_on">Nov. 15th</span>
-							<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							<a href="#" class="btn btn-primary">Read More</a>
-						</div> 
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4">
-					<div class="fh5co-blog animate-box">
-						<a href="#"><img class="img-responsive" src={% static 'images/project-3.jpg' %} alt=""></a>
-						<div class="blog-text">
-							<h3><a href=""#>45 Minimal Workspace Rooms for Web Savvys</a></h3>
-							<span class="posted_on">Nov. 15th</span>
-							<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-							<a href="#" class="btn btn-primary">Read More</a>
-						</div> 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-<div id="fh5co-started" style="background-image:url({% static 'images/img_bg_2.jpg' %});">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <h2>Lets Get Started</h2>
-                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-            </div>
-        </div>
-        <div class="row animate-box">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <p><a href="#" class="btn btn-default btn-lg">如何创建一个写作项目</a></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% endblock %}
-
-
+		<script src={% static 'js/jquery-2.2.4.min.js'%}></script>
+		<script src={% static 'js/bootstrap.min.js'%}></script>
+		<script src={% static 'js/slick.min.js'%}></script>
+		<script src={% static 'js/jquery.sliderPro.min.js'%}></script>
+		<script src={% static 'js/imagesloaded.pkgd.min.js'%}></script>
+		<script src={% static 'js/jquery.validate.min.js'%}></script>
+		<script src={% static 'js/owl.carousel.min.js'%}></script>
+		<script src={% static 'js/jquery.waypoints.min.js'%}></script>
+		<script src={% static 'js/jquery.counterup.min.js'%}></script>
+		<script src={% static 'js/jquery.mCustomScrollbar.js'%}></script>
+		<script src={% static 'js/viewportchecker.min.js'%}></script>
+		<script src={% static 'js/custom.js'%}></script>
+	</body>
+</html>

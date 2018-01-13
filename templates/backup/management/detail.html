@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}查看任务资料{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-11 col-md-offset-1">
+                    <dl class="dl-horizontal">
+                        <dt>标题</dt>
+                        <dd>{{ writing_task.title }}</dd>
+                        <dt>作者</dt>
+                        <dd>{{ writing_task.author }}</dd>
+                        <dt>上传日期</dt>
+                        <dd>{{ writing_task.publish_date|date:"Y-m-d" }}</dd>
+                        <dt>状态</dt>
+                        <dd>{{ writing_task.get_state_display }}</dd>
+                        <dt>文档下载</dt>
+                        <dd><a href ="/media/{{ writing_task.originalfile }}">{{ writing_task.originalfile }}</a></dd>
+                    </dl>
+                    <br>
+                    {% if not writing_task.state %}
+                    <div class="well">
+                    <button type="button" class="btn btn-danger" onclick="distribute(this)">已付款</button>
+                    </div>
+                    {% endif %}
+                    {% if writing_task.state == 2 %}
+                    <div class="well">
+                    <form method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group">
+                            <div class = 'fieldWrapper'>
+                                {{field.label_tag}}{{field}}
+                                {{field.errors}}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+                                <button class="btn btn btn-primary btn-block" type="submit">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+function distribute(val)
+{
+    $.post('/writings/distribute_writing_task/' + {{writing_task.id}});
+    window.location.href="/writings/view_writing_task/detail/?id=" + {{writing_task.id}};
+}
+</script>
+
+{% endblock %}

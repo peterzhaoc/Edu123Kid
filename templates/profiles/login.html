@@ -2,34 +2,31 @@
 {% load staticfiles %}
 {% block title %}登陆{% endblock %}
 {% block head %}
+    <link rel="stylesheet" href={% static 'css/demo.css'%}>
+    <link rel="stylesheet" href={% static 'css/common.css'%}>
 {% endblock %}
-{% block content %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+{% block contentbody %}
+<div class="article embed article-active">
+    <div class="panel" style="display:block">
+        <div class="login-content">
                 {% if state == 'not_exist_or_password_error' %}
-                    <div class="well">
-                        <h2 class="text-danger text-center">用户不存在或密码错误</h2>
-                    </div>
+                <div class="well">
+                    <h2 class="text-danger text-center">用户不存在或密码错误</h2>
+                </div>
                 {% endif %}
                 <form method="POST" role="form" class="form-signin" autocomplete="off">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="id_user_name" required name="username" value="" placeholder="请输入手机号" autofocus>
-                            <input type="password" class="form-control" required name="password" id="id_password" placeholder="请输入密码">
-                            <div id="vaptchaContainer">
-                                加载中。。。
-                            </div>
-                            <button class="btn btn btn-primary btn-block login-btn">登陆</button>
-                        </div>
+                    <div class="username"><i class="fa fa-user"></i><input id="id_user_name" required name="username" type="text" class="form-control" value="" placeholder="请输入手机号码"></div>
+                    <div class="password"><i class="fa fa-key"></i><input type="password" name="password" id="id_password" required class="form-control" value="" placeholder="请输入密码"></div>
+                    <div id="vaptchaContainer">
+                    </div>
+                    <div>
+                        <a name="btn-login" id="id_btn_login" class="btn-login">登录</a>
                     </div>
                 </form>
-            </div>
         </div>
     </div>
-
+</div>
 {% endblock %}
 {% block script %}
 <script src="https://cdn.vaptcha.com/v.js"></script>
@@ -74,7 +71,7 @@ $.get('/getVaptcha', function (r) {
                      });
       }, 'json')
       
-      $('.login-btn').click(function(e){
+      $('.btn-login').click(function(e){
                             e.preventDefault();
                             
                             if (!form.token || !form.challenge) {
@@ -83,8 +80,18 @@ $.get('/getVaptcha', function (r) {
                             }
                             form.username = $('input[name=username]').val();
                             form.password = $('input[name=password]').val();
-                            $.post('/profiles/login/', $('form').serialize());
-                            window.location.href = '/';
+                            $.post('/profiles/login/',
+                                   $('form').serialize(),
+                                   function(state){
+                                   if(state=='success')
+                                   {
+                                       window.location = '/profiles/userprofile'
+                                   }
+                                   else
+                                   {
+                                       window.location = '/profiles/login/?state=not_exist_or_password_error'
+                                   }
+                                   });
                             })
     </script>
 {% endblock %}

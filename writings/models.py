@@ -1,9 +1,14 @@
-# -*- coding:utf-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import auth
+
+from profiles.models import *
+from Edu123Kid.views import send_sms
 
 class Book(models.Model):
     name = models.CharField(max_length=128)
@@ -27,17 +32,61 @@ class WritingTask(models.Model):
     (4, u'已完成'),
     ]
     title = models.CharField(blank=True,null=True,max_length=128)
-    writingfile = models.FileField(blank=True,null=True,upload_to='static/file')
+    originalfile = models.FileField(blank=True,null=True,upload_to='static/file')
     author = models.ForeignKey(User)
-    publish_date = models.DateField(blank=True,null=True,)
+    publish_date = models.DateTimeField()
+    mentor_end_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     category = models.CharField(blank=True,null=True,max_length=128)
-    state = models.IntegerField(blank=True,null=True,verbose_name='状态',choices=STATE_CHOICES,default=0)    
+    state = models.IntegerField(blank=True,null=True,verbose_name='状态',choices=STATE_CHOICES,default=0)
+    editor = models.ForeignKey(MentorProfile,blank=True,null=True,related_name='editor')
+    editedfile = models.FileField(blank=True,null=True,upload_to='static/file')
+    finaleditor = models.ForeignKey(MentorProfile,blank=True,null=True,related_name='finaleditor')
+    finalfile = models.FileField(blank=True,null=True,upload_to='static/file')
 
     class META:
         ordering = ['state']
 
     def __unicode__(self):
         return self.title
+
+    def distribute(self):
+        mentor_list = MentorProfile.objects.filter(isvalid=True, permission=1)
+        if mentor_list.count() > 0:
+            mentor = mentor_list[0]
+            self.editor = mentor
+            self.save()
+            mentor.isvalid = False
+            mentor.save()
+            phonenumber = mentor.userprofile.user.username
+            params = "{\"expiredate\":\"" + self.mentor_end_date.strftime('%Y-%m-%d') + "\",\"product\":\"云通信\"}"
+            #print repr(params)
+            print send_sms(phonenumber, u'越读悦写'.encode("utf8"), "SMS_120130649", params.encode("utf8"))
+            self.state = 2
+            return True
+        else:
+            return False
+
+    def final_distribute(self):
+        mentor_list = MentorProfile.objects.filter(isvalid=True, permission=3)
+        if mentor_list.count() > 0:
+            mentor = mentor_list[0]
+            self.finaleditor = mentor
+            self.save()
+            phonenumber = mentor.userprofile.user.username
+            params = "{\"expiredate\":\"" + self.end_date.strftime('%Y-%m-%d') + "\",\"product\":\"云通信\"}"
+            #print repr(params)
+            print send_sms(phonenumber, u'越读悦写'.encode("utf8"), "SMS_121855941", params.encode("utf8"))
+            self.state = 3
+            return True
+        else:
+            return False
+
+    def expire_remind(self):
+        phonenumber = self.editor.userprofile.user.username
+        params = "{\"title\":\"" + self.title + "\",\"product\":\"云通信\"}"
+        print send_sms(phonenumber, u'越读悦写'.encode("utf8"), "SMS_120120626", params.encode("utf8"))
+        return True
 
 class Img(models.Model):
     name = models.CharField(max_length=128)
@@ -50,3 +99,19 @@ class Img(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class WritingLesson(models.Model):
+    STATE_CHOICES = [
+                     (0, u'未付款'),
+                     (1, u'未分配'),
+                     (2, u'授课中'),
+                     (3, u'已结课'),
+                     ]
+    student = models.ForeignKey(User)
+    state = models.IntegerField(blank=True,null=True,verbose_name='状态',choices=STATE_CHOICES,default=0)
+        
+    class META:
+        ordering = ['state']
+
+    def __unicode__(self):
+        return self.title

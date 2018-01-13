@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}我的作文{% endblock %}
+{% block head %}
+
+
+{% endblock %}
+
+{% block contentbody %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-2">
+                <div class="list-group">
+                    <a href="{% url 'my_writing_tasks' %}" class="list-group-item" id="id_state_all">
+                        全部任务
+                    </a>
+                    {% for state in state_list %}
+                    <a href="{% url 'my_writing_tasks' %}?state={{ state }}" class="list-group-item"
+                        id="id_state_{{ state }}">
+                        {{ state }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-9 col-md-offset-1">
+                <div class="row">
+                    {% if type %}
+                    <div class="col-xs-12 col-md-8"><button class="btn btn-default" type="submit"><a href="/writings/view_writing_task_list/">寻找新任务</a></button></div>
+                    {% else %}
+                    <div class="col-xs-12 col-md-8"><button class="btn btn-default" type="submit"><a href="/writings/add_writing_task/">创建新任务</a></button></div>
+                    {% endif %}
+                    <div class="col-md-4 col-md-offset-8">
+                        <form role="form" method="post" name="search_form">
+                            {% csrf_token %}
+                            <input type="search" class="form-control" name="keyword"
+                                placeholder="搜索任务" id="id_search_input" onkeyup="key_up()"
+                                autofocus>
+                                </form>
+                    </div>
+                </div>
+                
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>作文标题</th>
+                            <th>作者</th>
+                            <th>提交日期</th>
+                            <th>截止日期</th>
+                            <th>状态</th>
+                            <th>批改导师</th>
+                            <th>终审导师</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for writing_task in writing_task_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="/writings/writingtask/detail/{{ writing_task.id }}">{{ writing_task.title }}</a></td>
+                            <td>{{ writing_task.author }}</td>
+                            <td>{{ writing_task.publish_date|date:"Y-m-d" }}</td>
+                            {% if type %}
+                            <td>{{ writing_task.mentor_end_date|date:"Y-m-d" }}</td>
+                            {% else %}
+                            <td>{{ writing_task.end_date|date:"Y-m-d" }}</td>
+                            {% endif %}
+                            <td>{{ writing_task.get_state_display }}</td>
+                            <td>{{ writing_task.editor }}</td>
+                            <td>{{ writing_task.finaleditor }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td>暂无任务</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pager">
+                        {% if writing_task_list.has_previous %}
+                        <li class="previous"><a
+                            href="?typ={{ query_category }}&page={{ writing_task_list.previous_page_number }}">上一页</a>
+                        </li>
+                        {% else %}
+                        <li class="previous disabled"><a href="#">上一页</a></li>
+                        {% endif %}
+                        第 {{ writing_task_list.number }} / {{ writing_task_list.paginator.num_pages }}页
+                        {% if writing_task_list.has_next %}
+                        <li class="next"><a
+                            href="?typ={{ query_category }}&page={{ writing_task_list.next_page_number }}">下一页</a>
+                        </li>
+                        {% else %}
+                        <li class="next disabled"><a href="#">下一页</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+    $('#id_state_{{ query_state }}').addClass("active");
+</script>
+<script type="text/javascript">
+    function key_up() {
+        var old_value = $('#id_search_input').val();
+        setTimeout(function () {
+                   var new_value = $('#id_search_input').val();
+                   if (old_value == new_value) {
+                   document.search_form.submit();
+                   }
+                   }, 1500);
+    }
+</script>
+{% endblock %}

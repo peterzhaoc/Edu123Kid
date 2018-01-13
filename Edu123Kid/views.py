@@ -49,7 +49,9 @@ def test(request):
     return HttpResponse(html)
 
 
-def send_sms(business_id, phone_numbers, sign_name, template_code, template_param=None):
+def send_sms(phone_numbers, sign_name, template_code, template_param=None):
+    business_id = uuid.uuid1()
+    
     smsRequest = SendSmsRequest.SendSmsRequest()
     # 申请的短信模板编码,必填
     smsRequest.set_TemplateCode(template_code)

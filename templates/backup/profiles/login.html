@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}登陆{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                {% if state == 'not_exist_or_password_error' %}
+                    <div class="well">
+                        <h2 class="text-danger text-center">用户不存在或密码错误</h2>
+                    </div>
+                {% endif %}
+                <form method="POST" role="form" class="form-signin" autocomplete="off">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="id_user_name" required name="username" value="" placeholder="请输入手机号" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" required name="password" id="id_password" placeholder="请输入密码">
+                        </div>
+                        <div class="form-group">
+                            <div id="vaptchaContainer">
+                                加载中。。。
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn btn-primary btn-block login-btn">登陆</button>
+                        </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+<script src="https://cdn.vaptcha.com/v.js"></script>
+<script>
+    $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}'},async:false,
+                })
+</script>
+<script>
+    var form = {
+        token: '',
+        challenge: '',
+        username: '',
+        password: ''
+    }
+$.get('/getVaptcha', function (r) {
+      var options = {
+      vid: r.vid,//站点id ,string,必选,
+      challenge: r.challenge,//验证流水号 ,string,必选,
+      container: $('#vaptchaContainer'),//验证码容器,element,必选,
+      type: "popup",//验证码类型,string,默认float,可选择float,popup,embed,
+      https: true,//是否是https , boolean,默认true,(false:http),
+      color:"#57ABFF",//点击式按钮的背景颜色,string
+      outage: '/admin',
+      success: function (token, challenge) {
+      //当验证成功时执行回调,function,参数token为string,必选,
+      //提交表单时将token，challenge一并提交，作为验证通过的凭证，服务端进行二次验证
+      form.token = token;
+      form.challenge = challenge;
+      },
+      fail: function () {
+      //验证失败时执行回调
+      //todo:执行人机验证失败后的事情
+      }
+      }
+      //vaptcha对象
+      var vaptcha_obj;
+      window.vaptcha(options, function (obj) {
+                     vaptcha_obj = obj;
+                     //执行初始化
+                     vaptcha_obj.init();
+                     });
+      }, 'json')
+      
+      $('.login-btn').click(function(e){
+                            e.preventDefault();
+                            
+                            if (!form.token || !form.challenge) {
+                            alert('请进行人机验证');
+                            return false;
+                            }
+                            form.username = $('input[name=username]').val();
+                            form.password = $('input[name=password]').val();
+                            $.post('/profiles/login/',
+                                   $('form').serialize(),
+                                   function(state){
+                                   if(state=='success')
+                                   {
+                                       window.location = '/'
+                                   }
+                                   else
+                                   {
+                                       window.location = '/profiles/login/?state=not_exist_or_password_error'
+                                   }
+                                   });
+                            })
+    </script>
+{% endblock %}

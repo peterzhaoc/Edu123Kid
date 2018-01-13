@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block title %}添加任务{% endblock %}
 
-{% block content %}
+{% block contentbody %}
 
     <div class="container">
         <div class="row">
@@ -14,11 +14,12 @@
                 {% endif %}
                 <form method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <h1 class="form-signin-heading text-center">添加任务</h1>
                     {% for field in form %}
-                    <div class = 'fieldWrapper'>
-                        {{field.label_tag}}:{{field}}
-                        {{field.errors}}
+                    <div class="form-group">
+                        <div class = 'fieldWrapper'>
+                            {{field.label_tag}}{{field}}
+                            {{field.errors}}
+                        </div>
                     </div>
                     {% endfor %}
 

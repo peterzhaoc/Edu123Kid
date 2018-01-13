@@ -7,6 +7,7 @@ from Edu123Kid.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^test/', test, name='test'),
+    url(r'', include('home.urls')),
     url(r'', include('writings.urls')),
     url(r'', include('profiles.urls')),
     url(r'^captcha/', include('captcha.urls')),

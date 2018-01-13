@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}用户注册{% endblock %}
+{% block head %}
+
+
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/profiles/mywritingtasks">我的作文</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="/profiles/userprofile">账号信息</a></li>
+                <li><a href="#">修改密码</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            
+            <div class="well">
+                {{ profileform.as_ul }}
+            </div>
+            
+            {% if type %}
+            <div class="well">
+                {{ mentorform.as_ul}}
+            </div>
+            {% else %}
+            <div class="well">
+                {{ studentform.as_ul }}
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+
+{% endblock %}
