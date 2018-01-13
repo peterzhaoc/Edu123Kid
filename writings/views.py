@@ -10,7 +10,7 @@ from writings.models import *
 from profiles.models import *
 from writings.forms import *
 from django.core.urlresolvers import reverse
-from profiles.utils import permission_check, mentor_permission_check
+from profiles.utils import permission_check, mentor_permission_check, student_permission_check
 import datetime
 import json
 from Edu123Kid.views import send_sms
@@ -137,10 +137,10 @@ def add_img(request):
     }
     return render(request, 'management/add_img.html', content)
 
-@user_passes_test(permission_check) 
+@user_passes_test(student_permission_check)
 def add_writing_task(request):
     user = request.user if request.user.is_authenticated() else None
-    
+    studentprofile = StudentProfile.objects.get(userprofile=user.userprofile)
     if request.method == 'POST':
         form = WritingTaskAddForm(request.POST,request.FILES)
         if form.is_valid():
@@ -152,9 +152,9 @@ def add_writing_task(request):
                 mentor_end_date=datetime.datetime.now() + datetime.timedelta(days=4),
                 end_date=datetime.datetime.now() + datetime.timedelta(days=5),
             )
-            if user.userprofile.classes > 0:
-                user.userprofile.classes -= 1
-                user.userprofile.save()
+            if studentprofile.classes > 0:
+                studentprofile.classes -= 1
+                studentprofile.save()
                 new_writing_task.state = 1
                 new_writing_task.distribute()
 
