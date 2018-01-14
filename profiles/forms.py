@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-  
 from django import forms
 from django.forms import ModelForm
-from captcha.fields import CaptchaField
 from .models import *
 
 #表单
