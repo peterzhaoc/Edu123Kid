@@ -153,7 +153,7 @@ $.get('/getVaptcha', function (r) {
 //倒计时
 var countdown=60;
 function settime(val)
-{   alert("sss");
+{
     if(validatemobile($('input[name=phone_number]').val()))
     {
         var objh = document.getElementById("h_id");
@@ -187,13 +187,13 @@ function validatemobile(mobile)
     if(mobile.length==0)
     {
         alert('请输入手机号码！');
-        document.form1.mobile.focus();
+        $('input[name=phone_number]').focus();
         return false;
     }
     if(mobile.length!=11)
     {
         alert('请输入有效的手机号码！');
-        document.form1.mobile.focus();
+        $('input[name=phone_number]').focus();
         return false;
     }
     
@@ -201,7 +201,7 @@ function validatemobile(mobile)
     if(!myreg.test(mobile))
     {
         alert('请输入有效的手机号码！');
-        document.form1.mobile.focus();
+        $('input[name=phone_number]').focus();
         return false;
     }
     return true;
