@@ -88,7 +88,6 @@ def writing_task_detail(request,d):
             submit = True
         elif writing_task.state == 3 and writing_task.finaleditor == mentorprofile:
             submit = True
-    print submit
 
     if request.method == 'POST':
         if writing_task.state == 2:
