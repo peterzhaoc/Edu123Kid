@@ -17,8 +17,8 @@ DOMAIN = "dysmsapi.aliyuncs.com"
 ACCESS_KEY_ID = "LTAIoCLozjN0IYoH"
 ACCESS_KEY_SECRET = "kfxePATQzmvNPSxMIDRuUc8VeKTraA"
 
-vid, key = '5a1b8675a485fe214ce06f63', '5c8253b6c0c74f708c998d64789d1b66'
-#vid, key = '5a5b450da48617214c19f54b', 'ed2c189667de4d48b191542676e5136a'
+#vid, key = '5a1b8675a485fe214ce06f63', '5c8253b6c0c74f708c998d64789d1b66'
+vid, key = '5a5b450da48617214c19f54b', 'ed2c189667de4d48b191542676e5136a'
 work_dir = os.path.dirname(os.path.abspath(__file__))
 _vaptcha = vaptcha(vid, key)
 
