@@ -84,14 +84,11 @@ def writing_task_detail(request,d):
         mentorprofile = None
     else:
         mentorprofile = MentorProfile.objects.get(userprofile=profile)
-        print writing_task.state
-        print writing_task.editor
-        print mentorprofile
         if writing_task.state == 2 and writing_task.editor == mentorprofile:
             submit = True
         elif writing_task.state == 3 and writing_task.finaleditor == mentorprofile:
             submit = True
-
+    print submit
 
     if request.method == 'POST':
         if writing_task.state == 2:
