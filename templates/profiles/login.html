@@ -20,7 +20,7 @@
                     <div class="password"><i class="fa fa-key"></i><input type="password" name="password" id="id_password" required class="form-control" value="" placeholder="请输入密码"></div>
                     <div id="vaptchaContainer">
                     </div>
-                    <div>
+                    <div name="submit-div" class="code" style="display: none;">
                         <a name="btn-login" id="id_btn_login" class="btn-login">登录</a>
                     </div>
                 </form>
@@ -56,6 +56,7 @@ $.get('/getVaptcha', function (r) {
       //提交表单时将token，challenge一并提交，作为验证通过的凭证，服务端进行二次验证
       form.token = token;
       form.challenge = challenge;
+      $('div[name=submit-div]').show();
       },
       fail: function () {
       //验证失败时执行回调
