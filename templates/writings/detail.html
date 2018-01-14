@@ -50,9 +50,9 @@
                         <dt><h3>状态</h3></dt>
                         <dd><h3>{{ writing_task.get_state_display }}</h3></dd>
                         <dt><h3>文档下载</h3></dt>
-                        <dd><a href ="/media/{{ writing_task.originalfile }}"><h3>{{ writing_task.title }}</h3></a></dd>
+                        <dd><a href ="/media/{{ writing_task.originalfile }}"><h3>{{ writing_task.title }}{{upload}}</h3></a></dd>
                     </dl>
-
+                    {% if upload %}
                         <div class="input-group col-md-8">
                             <label class="input-group-btn">
                                 <span class="btn btn-primary">
@@ -66,7 +66,7 @@
                                 </button>
                             </label>
                         </div>
-
+                    {% endif %}
                 </form>
                 </div>
             </div>

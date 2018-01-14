@@ -79,15 +79,15 @@ def writing_task_detail(request,d):
         return HttpResponseRedirect(reverse('view_writing_task_list'))
     writing_task = WritingTask.objects.get(id=d)
 
-    submit = False
+    upload = False
     if type == 0:
         mentorprofile = None
     else:
         mentorprofile = MentorProfile.objects.get(userprofile=profile)
         if writing_task.state == 2 and writing_task.editor == mentorprofile:
-            submit = True
+            upload = True
         elif writing_task.state == 3 and writing_task.finaleditor == mentorprofile:
-            submit = True
+            upload = True
 
     if request.method == 'POST':
         if writing_task.state == 2:
@@ -100,8 +100,9 @@ def writing_task_detail(request,d):
             writing_task.state = 4
             writing_task.save()
             return HttpResponseRedirect(reverse('my_writing_tasks'))
+
     content = {
-        'submit': submit,
+        'upload': upload,
         'type': type,
         'user': user,
         'writing_task': writing_task,
