@@ -115,7 +115,7 @@ def set_password(request):
             usertype.save()
             profile.save()
             request.session.set_expiry(1800)
-            return HttpResponseRedirect(reverse('homepage'))
+            return HttpResponseRedirect(reverse('user_profile'))
         content ={'user': None,'state': state,}
         return render(request, 'profiles/set_password.html', content)
     else:
