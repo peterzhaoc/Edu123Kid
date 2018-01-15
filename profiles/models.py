@@ -31,7 +31,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 post_save.connect(create_user_profile, sender=User)
 '''
 class StudentProfile(models.Model):
-    userprofile = models.ForeignKey(UserProfile)
+    userprofile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     Grade_CHOICES = [
                     (1, u'一年级'),
                     (2, u'二年级'),
@@ -53,7 +53,7 @@ class StudentProfile(models.Model):
 
 
 class MentorProfile(models.Model):
-    userprofile = models.ForeignKey(UserProfile)
+    userprofile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     isvalid = models.BooleanField(verbose_name='空闲',default=True)
     Prefer_CHOICES = [
                      (0, u'小学作文'),

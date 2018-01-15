@@ -33,7 +33,7 @@ class WritingTask(models.Model):
     ]
     title = models.CharField(blank=True,null=True,max_length=128)
     originalfile = models.FileField(blank=True,null=True,upload_to='static/file')
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     publish_date = models.DateTimeField()
     mentor_end_date = models.DateTimeField()
     end_date = models.DateTimeField()
