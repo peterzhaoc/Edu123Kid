@@ -68,7 +68,7 @@
                     <button onclick="settime(this)"><h id="h_id">发送验证码</h></button>
             </div>
             <div id="vaptchaContainer"></div>
-            <div name="login-btn-div" style="display: none;">
+            <div name="login-btn-div" style="display: block;">
                 <button name="signup-btn" class="btn btn btn-primary btn-block login-btn" id="submit" name= "register" value="注册">注册</button>
             </div>
         </div>
@@ -170,7 +170,7 @@ function settime(val)
         {
             if(countdown == 60)
             {
-                $('div[name=login-btn-div]').show();
+                //$('div[name=login-btn-div]').show();
                 $.post('/profiles/get_verification_code/',
                        $('form').serialize());
             }
