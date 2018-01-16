@@ -51,6 +51,10 @@
                         <dd><h3>{{ writing_task.get_state_display }}</h3></dd>
                         <dt><h3>文档下载</h3></dt>
                         <dd><a href ="/media/{{ writing_task.originalfile }}"><h3>{{ writing_task.title }}</h3></a></dd>
+                        {% if writing_task.editedfile %}
+                        <dt><h3>修改文档</h3></dt>
+                        <dd><a href ="/media/{{ writing_task.editedfile }}"><h3>{{ writing_task.editedfile }}</h3></a></dd>
+                        {% endif %}
                     </dl>
                     {% if upload %}
                         <div class="input-group col-md-8">

@@ -68,8 +68,8 @@
                     <button onclick="settime(this)"><h id="h_id">发送验证码</h></button>
             </div>
             <div id="vaptchaContainer"></div>
-            <div name="login-btn-div" style="display: block;">
-                <button name="signup-btn" class="btn btn btn-primary btn-block login-btn" id="submit" name= "register" value="注册">注册</button>
+            <div name="signup-div" class="code">
+                <a name="btn-login" id="id_btn_signup" class="btn-login">注册</a>
             </div>
         </div>
         </form>
@@ -87,8 +87,8 @@
     var form = {
         token: '',
         challenge: '',
-        username: '',
-        password: ''
+        phone_number: '',
+        verification_code: ''
     }
 $.get('/getVaptcha', function (r) {
       var options = {
@@ -120,25 +120,24 @@ $.get('/getVaptcha', function (r) {
                      });
       }, 'json')
       
-      $('.signup-btn').click(function(e){
+      $('#id_btn_signup').click(function(e){
                             e.preventDefault();
-                            
                             if (!form.token || !form.challenge) {
                             alert('请进行人机验证');
                             return false;
                             }
-                            form.username = $('input[name=username]').val();
-                            form.password = $('input[name=password]').val();
-                            $.post('/profiles/login/',
+                            form.phone_number = $('input[name=phone_number]').val();
+                            form.verification_code = $('input[name=verification_code]').val();
+                            $.post('/profiles/signup/',
                                    $('form').serialize(),
                                    function(state){
                                    if(state=='success')
                                    {
-                                       window.location = '/'
+                                        window.location = '/profiles/set_password';
                                    }
                                    else
                                    {
-                                       window.location = '/profiles/login/?state=not_exist_or_password_error'
+                                        window.location = '/profiles/signup/?state=' + state;
                                    }
                                    });
                             })

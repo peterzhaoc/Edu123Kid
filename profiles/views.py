@@ -62,26 +62,23 @@ def get_verification_code(request):
     return HttpResponse(html)
 
 def signup(request):
-    state = ""
+    state = request.GET.get('state', '')
     user = request.user if request.user.is_authenticated() else None
     if user:
         return HttpResponseRedirect(reverse('user_profile'))
     elif request.method == 'POST':
         if request.POST["verification_code"] == request.session.get("verification_code", default=None):
             request.session["phone_number"] = request.POST["phone_number"]
-            return HttpResponseRedirect(reverse('set_password'))
+            state = 'success'
         else:
-            content = {
-            'state': "verification_code_not_match",
-            'user': None
-            }
-            return render(request, 'profiles/signup.html', content)
+            state = 'verification_code_not_match'
+        return HttpResponse(state)
     else:
         content = {
             'state': state,
             'user': None
         }
-        return render(request, 'profiles/signup.html')
+        return render(request, 'profiles/signup.html', content)
 
 def set_password(request):
     state = None

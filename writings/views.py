@@ -89,17 +89,17 @@ def writing_task_detail(request,d):
         elif writing_task.state == 3 and writing_task.finaleditor == mentorprofile:
             upload = True
 
+    
     if request.method == 'POST':
         if writing_task.state == 2:
             writing_task.editedfile = request.FILES.get('chosen_file',None)
             writing_task.final_distribute()
             writing_task.save()
-            return HttpResponseRedirect(reverse('my_writing_tasks'))
         elif writing_task.state == 3:
-            writing_task.editedfile = request.FILES.get('chosen_file',None)
+            writing_task.finalfile = request.FILES.get('chosen_file',None)
             writing_task.state = 4
             writing_task.save()
-            return HttpResponseRedirect(reverse('my_writing_tasks'))
+        return HttpResponseRedirect(reverse('my_writing_tasks'))
 
     content = {
         'upload': upload,

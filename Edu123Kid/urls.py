@@ -16,9 +16,14 @@ urlpatterns = [
 ]
 
 if not settings.DEBUG:
-    import debug_toolbar
     urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
         url(r'^static/(?P<path>.*)$', views.static.serve, {'document_root': settings.STATIC_ROOT}, name="static"),
         url(r'^media/(?P<path>.*)$', views.static.serve, {'document_root': settings.MEDIA_ROOT}, name="media")
     ]
+else:
+    import debug_toolbar
+    urlpatterns += [
+                    url(r'^__debug__/', include(debug_toolbar.urls)),
+                    url(r'^static/(?P<path>.*)$', views.static.serve, {'document_root': settings.STATIC_ROOT}, name="static"),
+                    url(r'^media/(?P<path>.*)$', views.static.serve, {'document_root': settings.MEDIA_ROOT}, name="media")
+                    ]

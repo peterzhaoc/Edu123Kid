@@ -69,6 +69,7 @@ class WritingTask(models.Model):
 
     def final_distribute(self):
         mentor_list = MentorProfile.objects.filter(isvalid=True, permission=3)
+        self.state = 3
         if mentor_list.count() > 0:
             mentor = mentor_list[0]
             self.finaleditor = mentor
@@ -77,7 +78,6 @@ class WritingTask(models.Model):
             params = "{\"expiredate\":\"" + self.end_date.strftime('%Y-%m-%d') + "\",\"product\":\"云通信\"}"
             #print repr(params)
             print send_sms(phonenumber, u'越读悦写'.encode("utf8"), "SMS_121855941", params.encode("utf8"))
-            self.state = 3
             return True
         else:
             return False
