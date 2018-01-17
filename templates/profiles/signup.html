@@ -139,7 +139,7 @@ $.get('/getVaptcha', function (r) {
                             }
                             $.post('/profiles/signup/',
                                    $('form').serialize(),
-                                   function(state){console.log(state);
+                                   function(state){
                                    if(state=='success')
                                    {
                                         window.location = '/profiles/set_password';

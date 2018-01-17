@@ -76,7 +76,7 @@ def signup(request):
                 state = 'success'
         else:
             state = u'验证码错误'
-        return HttpResponse('state')
+        return HttpResponse(state)
     else:
         content = {
             'state': state,
