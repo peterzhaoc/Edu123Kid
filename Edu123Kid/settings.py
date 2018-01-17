@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'writings.apps.WritingsConfig',
+    'courses.apps.CoursesConfig',
     'profiles.apps.ProfilesConfig',
     'home.apps.HomeConfig',
                   

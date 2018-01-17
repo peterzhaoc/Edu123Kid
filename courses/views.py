@@ -6,9 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from writings.models import *
 from profiles.models import *
-from writings.forms import *
 from django.core.urlresolvers import reverse
 from profiles.utils import permission_check, mentor_permission_check, student_permission_check
 import datetime
@@ -16,25 +14,38 @@ import json
 from Edu123Kid.views import send_sms
 
 @user_passes_test(permission_check)
-def add_book(request):
-    user = request.user
-    state = None
-    if request.method == 'POST':
-        new_book = Book(
-                name=request.POST.get('name', ''),
-                author=request.POST.get('author', ''),
-                category=request.POST.get('category', ''),
-                price=request.POST.get('price', 0),
-                publish_date=request.POST.get('publish_date', '')
-        )
-        new_book.save()
-        state = 'success'
+def index(request):
+    user = request.user if request.user.is_authenticated() else None
     content = {
         'user': user,
-        'active_menu': 'add_book',
-        'state': state,
     }
-    return render(request, 'management/add_book.html', content)
+    return render(request, 'courses/index.html', content)
+
+# 创建课程
+@user_passes_test(student_permission_check)
+def add_course(request):
+    user = request.user if request.user.is_authenticated() else None
+    studentprofile = StudentProfile.objects.get(userprofile=user.userprofile)
+    if request.method == 'POST':
+        form = WritingTaskAddForm(request.POST,request.FILES)
+        if form.is_valid():
+            new_writing_task = WritingTask(
+                                           title=form.cleaned_data['title'],
+                                           originalfile=form.cleaned_data['originalfile'],
+                                           author=user,
+                                           publish_date=datetime.datetime.now(),
+                                           mentor_end_date=datetime.datetime.now() + datetime.timedelta(days=4),
+                                           end_date=datetime.datetime.now() + datetime.timedelta(days=5),
+                                           )
+        return HttpResponseRedirect("/writings/mywritingtasks/")
+    else:
+        form = WritingTaskAddForm()
+    
+    content = {
+        'user': user,
+        'form': form,
+}
+    return render(request, 'writings/add_writing_task.html', content)
 
 def view_book_list(request):
     user = request.user if request.user.is_authenticated() else None
@@ -68,7 +79,7 @@ def view_book_list(request):
     }
     return render(request, 'management/view_book_list.html', content)
 
-# 任务主页面 用以查看信息 提交文件
+
 def writing_task_detail(request,d):
     user = request.user if request.user.is_authenticated() else None
     profile = user.userprofile
@@ -137,7 +148,6 @@ def add_img(request):
     }
     return render(request, 'management/add_img.html', content)
 
-# 添加任务
 @user_passes_test(student_permission_check)
 def add_writing_task(request):
     user = request.user if request.user.is_authenticated() else None

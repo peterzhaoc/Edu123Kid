@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'', include('home.urls')),
     url(r'', include('writings.urls')),
     url(r'', include('profiles.urls')),
+    url(r'', include('courses.urls')),
     #url(r'^captcha/', include('captcha.urls')),
     url(r'^getVaptcha/', get_vaptcha),
     url(r'^validate/', validate),
