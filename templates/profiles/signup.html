@@ -130,7 +130,6 @@ $.get('/getVaptcha', function (r) {
                             form.verification_code = $('input[name=verification_code]').val();
                             if(!validatemobile(form.phone_number))
                             {
-                                alert('请输入正确手机号码');
                                 return false;
                             }
                             else if(form.verification_code == "")
@@ -140,7 +139,7 @@ $.get('/getVaptcha', function (r) {
                             }
                             $.post('/profiles/signup/',
                                    $('form').serialize(),
-                                   function(state){
+                                   function(state){alert($('form').serialize());
                                    if(state=='success')
                                    {
                                         window.location = '/profiles/set_password';
