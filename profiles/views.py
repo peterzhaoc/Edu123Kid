@@ -68,10 +68,14 @@ def signup(request):
         return HttpResponseRedirect(reverse('user_profile'))
     elif request.method == 'POST':
         if request.POST["verification_code"] == request.session.get("verification_code", default=None):
-            request.session["phone_number"] = request.POST["phone_number"]
-            state = 'success'
+            newuser = User.objects.get(username=request.POST["phone_number"])
+            if newuser:
+                state = u'用户已存在'
+            else:
+                request.session["phone_number"] = request.POST["phone_number"]
+                state = 'success'
         else:
-            state = 'verification_code_not_match'
+            state = u'验证码错误'
         return HttpResponse(state)
     else:
         content = {

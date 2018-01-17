@@ -9,9 +9,9 @@
 
 <div class="article float-demo article-active">
     <div class="panel">
-        {% if state == 'verification_code_not_match' %}
+        {% if state %}
         <div class="well">
-            <h2 class="text-danger text-center">验证码错误</h2>
+            <h2 class="text-danger text-center">{{state}}</h2>
         </div>
         {% endif %}
         <form method="POST" role="form" class="form-signin" autocomplete="off">
@@ -128,6 +128,16 @@ $.get('/getVaptcha', function (r) {
                             }
                             form.phone_number = $('input[name=phone_number]').val();
                             form.verification_code = $('input[name=verification_code]').val();
+                            if(!validatemobile(form.phone_number))
+                            {
+                                alert('请输入正确手机号码');
+                                return false;
+                            }
+                            else if(form.verification_code == "")
+                            {
+                                alert('请输入正确验证码');
+                                return false;
+                            }
                             $.post('/profiles/signup/',
                                    $('form').serialize(),
                                    function(state){
