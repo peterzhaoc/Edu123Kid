@@ -134,7 +134,7 @@ $.get('/getVaptcha', function (r) {
                             }
                             else if(form.verification_code == "")
                             {
-                                alert('请输入正确验证码');
+                                alert('请输入验证码');
                                 return false;
                             }
                             $.post('/profiles/signup/',
@@ -145,7 +145,7 @@ $.get('/getVaptcha', function (r) {
                                         window.location = '/profiles/set_password';
                                    }
                                    else
-                                   {
+                                   {alert(state);
                                         window.location = '/profiles/signup/?state=' + state;
                                    }
                                    });
