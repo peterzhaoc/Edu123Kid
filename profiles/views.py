@@ -26,24 +26,7 @@ def index(request):
     content = {
         'user': user,
     }
-#return render(request, 'profiles/index.html', content)
-    return render(request, '404.html', content)
-
-def blog(request):
-    user = request.user if request.user.is_authenticated() else None
-    content = {
-        'user': user,
-    }
-    #return render(request, 'profiles/index.html', content)
-    return render(request, '404.html', content)
-
-def about(request):
-    user = request.user if request.user.is_authenticated() else None
-    content = {
-        'user': user,
-    }
-    #return render(request, 'profiles/index.html', content)
-    return render(request, '404.html', content)
+    return render(request, 'profiles/index.html', content)
 
 '''
 # 未使用
@@ -69,7 +52,7 @@ def get_verification_code(request):
     if request.method == 'POST':
         verification_code = generate_verification_code()
         params = "{\"code\":\"" + verification_code + "\",\"product\":\"云通信\"}"
-        #print send_sms(request.POST['phone_number'], "越读悦写", "SMS_112465062", params)
+        print send_sms(request.POST['phone_number'], "越读悦写", "SMS_112465062", params)
         print verification_code
         request.session["verification_code"] = verification_code
         request.session.set_expiry(300)
@@ -85,9 +68,8 @@ def signup(request):
         return HttpResponseRedirect(reverse('user_profile'))
     elif request.method == 'POST':
         if request.POST["verification_code"] == request.session.get("verification_code", default=None):
-            newuser = User.objects.filter(username=request.POST["phone_number"])
-            
-            if len(newuser) > 0:
+            newuser = User.objects.get(username=request.POST["phone_number"])
+            if newuser:
                 state = u'用户已存在'
             else:
                 request.session["phone_number"] = request.POST["phone_number"]

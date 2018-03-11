@@ -3,8 +3,6 @@ from profiles import views
 
 urlpatterns = [
     url(r'^$', views.index, name='homepage'),
-    url(r'^about/$', views.about, name='about'),
-    url(r'^blog/$', views.blog, name='blog'),
     url(r'^profiles/userprofile/$', views.user_profile, name='user_profile'),
     url(r'^profiles/signup/$', views.signup, name='signup'),
     url(r'^profiles/login/$', views.login, name='login'),
