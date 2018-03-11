@@ -17,15 +17,17 @@
     <link rel="stylesheet" href={% static 'css/slick.css'%}>
     <link rel="stylesheet" href={% static 'css/slider-pro.min.css'%}>
     <link rel="stylesheet" href={% static 'css/jquery.mCustomScrollbar.css'%}>
+    <link rel="stylesheet" href={% static 'css/woocommerce.css'%}>
+    <link rel="stylesheet" href={% static 'css/woocommerce-layout.css'%}>
+    <link rel="stylesheet" href={% static 'css/woocommerce-smallscreen.css'%} type="text/css" media="only screen and (max-width: 768px)">
     <link rel="stylesheet" href={% static 'css/animate.css'%}>
     <link rel="stylesheet" href={% static 'style.css'%}>
-        
     <!-- View Responsive -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	    {% block head %}{% endblock %}
 	</head>
-	<body>
+	<body class="woocommerce woocommerce-page">
 		<div id="main-container">
 			<header class="kopa-header-02">
 				<div class="top-header">
@@ -34,11 +36,11 @@
 							<div class="kopa-any-question">
 								<p>
 									<i class="fa fa-check-circle"></i>
-									Have any question?
+									有问题?
 									<span>|</span>
-									<a href="#">+38 237 948 236</a> 
+									<a href="#">+86 173 2113 2191</a>
 									 / 
-									<a href="#">Admin@teacher.com</a>
+									<a href="#">Admin@123kid.com.cn</a>
 								</p>
 							</div>
 						</div>
@@ -55,11 +57,11 @@
 									<button type="button">
 										<i class="ti-search"></i>
 									</button>
-									<input type="text" placeholder="Search..." class="">
+									<input type="text" placeholder="搜索..." class="">
 								</div>
 								<a href="#" class="kopa-mini-cart">
 									<span class="fa fa-shopping-bag"></span>
-									<span class="count-item">5</span>
+									<span class="count-item"></span>
 								</a>
 							</div>
 						</div>
@@ -80,9 +82,9 @@
 									<li><a href="/">主页</a></li>
                                     <li><a href="/writings/mywritingtasks">我的作文</a></li>
                                     <li><a href="/courses/mycourses">我的课程</a></li>
-									<li><a href="about.html">学员佳作</a></li>
-									<li><a href="shop.html">博客</a></li>
-									<li><a href="single-shop.html">关于我们</a></li>
+									<li><a href="/writings/best/">学员佳作</a></li>
+									<li><a href="/blog/">博客</a></li>
+									<li><a href="/about/">关于我们</a></li>
 								</ul>
 							</nav>
 							<div class="kopa-hamburger-menu">
@@ -108,7 +110,7 @@
 			        <ul class="kopa-menu-click">
 			            <li><a href="/">主页</a></li>
 						<li><a href="/writings/mywritingtasks">我的作文</a></li>
-						<li><a href="shop.html">我的课程</a></li>
+						<li><a href="/courses/mycourses">我的课程</a></li>
 						<li><a href="single-shop.html">学员佳作</a></li>
 						<li><a href="blog.html">博客</a></li>
 						<li><a href="single-blog.html">关于我们</a></li>
@@ -147,13 +149,7 @@
 						<div class="widget kopa-widget-course_info">
 							<div class="widget-content module-course_info-02">
 								<div class="row">
-									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-										<div class="tab-content">
-											<div class="tab-pane fade in active">
 											{% block contentbody %}{% endblock %}
-											</div>
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -180,7 +176,7 @@
 						</div>
 						<div class="col-md-4 col-sm-6 col-xs-12 col-md-pull-4">
 							<div class="widget kopa-widget-tweets">
-								<h3 class="widget-title style-02">RECENT TWEETS</h3>
+								<h3 class="widget-title style-02">近期新闻</h3>
 								<div class="widget-content module-tweets-01">
 									<ul>
 										<li>
@@ -241,10 +237,12 @@
 		<script src={% static 'js/jquery.waypoints.min.js'%}></script>
 		<script src={% static 'js/jquery.counterup.min.js'%}></script>
 		<script src={% static 'js/jquery.mCustomScrollbar.js'%}></script>
-		<!---<script src={% static 'js/gmap3.min.js'%}></script>
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>--->
+		<script src={% static 'js/masonry.pkgd.min.js'%}></script>
+		<!--<script src={% static 'js/gmap3.min.js'%}></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>-->
 		<script src={% static 'js/viewportchecker.min.js'%}></script>
 		<script src={% static 'js/custom.js'%}></script>
+        <script src={% static 'js/moment-with-locales.js'%}></script>
         {% block script %}{% endblock %}
 	</body>
 </html>

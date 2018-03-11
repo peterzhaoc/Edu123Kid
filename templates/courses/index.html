@@ -2,333 +2,85 @@
 {% load staticfiles %}
 {% block title %}课程列表{% endblock %}
 {% block head %}
-<style>
-.btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
-}
-</style>
+{% endblock %}
+ {% block contenthead %}
+<div class="widget kopa-widget-breadcrumb">
+                        <div class="widget-content">
+                            <h3 class="breadcrumb-title">课程列表</h3>
+                        </div>
+</div>
 {% endblock %}
 {% block contentbody%}
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-sm-12 col-xs-12">
-            <div class="shop-content">
-                <nav class="woocommerce-breadcrumb"><a href="http://localhost/wordpress">Home</a>&nbsp;/&nbsp;Shop</nav>
-                <h1 class="page-title">Shop</h1>
-                <p class="woocommerce-result-count">Showing 1–10 of 14 results</p>
-                <form class="woocommerce-ordering" method="get">
-                    <select name="orderby" class="orderby">
-                        <option value="menu_order" selected="selected">Default sorting</option>
-                        <option value="popularity">Sort by popularity</option>
-                        <option value="rating">Sort by average rating</option>
-                        <option value="date">Sort by newness</option>
-                        <option value="price">Sort by price: low to high</option>
-                        <option value="price-desc">Sort by price: high to low</option>
-                    </select>
-                    <input type="hidden" name="post_type" value="product">
-                        </form>
-                <ul class="products">
-                    <li class="product has-post-thumbnail">
-                        <a href="#" class="woocommerce-LoopProduct-link">
-                            <span class="onsale">Sale</span>
-                            <img src="images/shop/1.jpg" alt="">
-                                <span class="button add_to_cart_button ajax_add_to_cart">buy now</span>
-                                </a>
-                        <div class="content">
-                            <h3><a href="#">Introduction to Programming</a></h3>
-                            <p>
-                            By
-                            <a href="#">Ashiful Pappu</a>
-                            <a href="#">Senior Trainer</a>
-                            </p>
-                            <div class="star-rating" title="Rated 4 out of 5">
-                                <span>
-                                    <strong class="rating">4</strong> out of 5
-                                </span>
+<div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="shop-content">
+        <ul class="products">
+            <li class="product has-post-thumbnail">
+                <a href="/courses/detail/1" class="woocommerce-LoopProduct-link">
+                    <span class="onsale">折扣</span>
+                    <img src={% static 'images/shop/1.jpg'%} alt="">
+                    <span class="button add_to_cart_button ajax_add_to_cart">我要报名</span>
+                </a>
+                <div class="content">
+                <h3><a href="#">寒假XXX作文班</a></h3>
+                <p>By<a href="#">杨老师</a></p>
+	            <div class="star-rating" title="Rated 5 out of 5">
+	                <span><strong class="rating">5</strong> out of 5</span>
+	            </div>
+	            <span class="price">
+	            <del>
+	                <span class="woocommerce-Price-amount amount">
+	                                        			<span class="woocommerce-Price-currencySymbol">¥</span>
+	                                        			2888
+	                                        		</span>
+	                                        	</del>
+		                                        <ins>
+		                                        	<span class="woocommerce-Price-amount amount">
+		                                        		<span class="woocommerce-Price-currencySymbol">¥</span>1888
+		                                        	</span>
+		                                        </ins>
+	                                        </span>
+		                                    
+	                                    </div>
+	                                </li>
+	                                <li class="product has-post-thumbnail">
+	                                    <a href="/courses/detail/2" class="woocommerce-LoopProduct-link">
+	                                        <img src={% static 'images/shop/2.jpg'%} alt="">
+	                                        <span class="button add_to_cart_button ajax_add_to_cart">我要报名</span>
+	                                    </a>
+	                                    <div class="content">
+	                                    	<h3><a href="#">标准XXXX作文课</a></h3>
+	                                        <p>
+	                                        	By
+	                                        	<a href="#">金老师</a>
+	                                        </p>
+	                                        <div class="star-rating" title="Rated 5 out of 5">
+	                                        	<span>
+	                                        		<strong class="rating">5</strong> out of 5
+	                                        	</span>
+	                                        </div>
+	                                        <span class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">¥</span>2188</span></span>
+		                                    
+	                                    </div>
+	                                </li>
+	                            </ul>
+	                            <nav class="woocommerce-pagination">
+									<ul class="page-numbers">
+										<li>
+											<a class="prev page-numbers" href="#"><i class="fa fa-angle-left"></i></a>
+										</li>
+										<li>
+											<span class="page-numbers current">1</span>
+										</li>
+										<li>
+											<a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a>
+										</li>
+									</ul>
+								</nav>
                             </div>
-                            <span class="price">
-                                <del>
-                                    <span class="woocommerce-Price-amount amount">
-                                        <span class="woocommerce-Price-currencySymbol">$</span>
-                                        400
-                                    </span>
-                                </del>
-                                <ins>
-                                    <span class="woocommerce-Price-amount amount">
-                                        <span class="woocommerce-Price-currencySymbol">$</span>319
-                                    </span>
-                                </ins>
-                            </span>
                             
-                        </div>
-                    </li>
-                    <li class="product has-post-thumbnail">
-                        <a href="#" class="woocommerce-LoopProduct-link">
-                            <img src="images/shop/2.jpg" alt="">
-                                <span class="button add_to_cart_button ajax_add_to_cart">buy now</span>
-                                </a>
-                        <div class="content">
-                            <h3><a href="#">寒假班</a></h3>
-                            <p>
-                            By
-                            <a href="#">Ashiful Pappu</a>
-                            <a href="#">Senior Trainer</a>
-                            </p>
-                            <div class="star-rating" title="Rated 4 out of 5">
-                                <span>
-                                    <strong class="rating">4</strong> out of 5
-                                </span>
-                            </div>
-                            <span class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>219</span></span>
-                            
-                        </div>
-                    </li>
-                    <li class="product has-post-thumbnail">
-                        <a href="#" class="woocommerce-LoopProduct-link">
-                            <img src="images/shop/3.jpg" alt="">
-                                <span class="button add_to_cart_button ajax_add_to_cart">buy now</span>
-                                </a>
-                        <div class="content">
-                            <h3><a href="#">平时班</a></h3>
-                            <p>
-                            By
-                            <a href="#">Ashiful Pappu</a>
-                            <a href="#">Senior Trainer</a>
-                            </p>
-                            <div class="star-rating" title="Rated 4 out of 5">
-                                <span>
-                                    <strong class="rating">4</strong> out of 5
-                                </span>
-                            </div>
-                            <span class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>219</span></span>
-                            
-                        </div>
-                    </li>
-                    <li class="product has-post-thumbnail">
-                        <a href="#" class="woocommerce-LoopProduct-link">
-                            <img src="images/shop/4.jpg" alt="">
-                                <span class="button add_to_cart_button ajax_add_to_cart">buy now</span>
-                                </a>
-                        <div class="content">
-                            <h3><a href="#">Introduction to Programming</a></h3>
-                            <p>
-                            By
-                            <a href="#">Ashiful Pappu</a>
-                            <a href="#">Senior Trainer</a>
-                            </p>
-                            <div class="star-rating" title="Rated 4 out of 5">
-                                <span>
-                                    <strong class="rating">4</strong> out of 5
-                                </span>
-                            </div>
-                            <span class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>219</span></span>
-                            
-                        </div>
-                    </li>
-                    <li class="product has-post-thumbnail">
-                        <a href="#" class="woocommerce-LoopProduct-link">
-                            <img src="images/shop/5.jpg" alt="">
-                                <span class="button add_to_cart_button ajax_add_to_cart">buy now</span>
-                                </a>
-                        <div class="content">
-                            <h3><a href="#">Introduction to Programming</a></h3>
-                            <p>
-                            By
-                            <a href="#">Ashiful Pappu</a>
-                            <a href="#">Senior Trainer</a>
-                            </p>
-                            <div class="star-rating" title="Rated 4 out of 5">
-                                <span>
-                                    <strong class="rating">4</strong> out of 5
-                                </span>
-                            </div>
-                            <span class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>219</span></span>
-                            
-                        </div>
-                    </li>
-                    <li class="product has-post-thumbnail">
-                        <a href="#" class="woocommerce-LoopProduct-link">
-                            <img src="images/shop/6.jpg" alt="">
-                                <span class="button add_to_cart_button ajax_add_to_cart">buy now</span>
-                                </a>
-                        <div class="content">
-                            <h3><a href="#">Introduction to Programming</a></h3>
-                            <p>
-                            By
-                            <a href="#">Ashiful Pappu</a>
-                            <a href="#">Senior Trainer</a>
-                            </p>
-                            <div class="star-rating" title="Rated 4 out of 5">
-                                <span>
-                                    <strong class="rating">4</strong> out of 5
-                                </span>
-                            </div>
-                            <span class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>219</span></span>
-                            
-                        </div>
-                    </li>
-                </ul>
-                <nav class="woocommerce-pagination">
-                    <ul class="page-numbers">
-                        <li>
-                            <a class="prev page-numbers" href="#"><i class="fa fa-angle-left"></i></a>
-                        </li>
-                        <li>
-                            <span class="page-numbers current">1</span>
-                        </li>
-                        <li>
-                            <a class="page-numbers" href="#">2</a>
-                        </li>
-                        <li>
-                            <a class="page-numbers" href="#">3</a>
-                        </li>
-                        <li>
-                            <a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12">
-            <aside class="sidebar">
-                <section class="widget kopa-widget-advanced_search">
-                    <h2 class="widget-title">ABOUT UNIVERSITY</h2>
-                    <div class="widget-content module-advanced_search-03">
-                        <form>
-                            <p><input type="text" placeholder="Course title"></p>
-                                <p><input type="text" placeholder="Course ID"></p>
-                                    <p class="has-arrow">
-                                    <select name="category" id="category">
-                                        <option value="1">All category</option>
-                                        <option value="2">Front - End</option>
-                                        <option value="3">Back - End</option>
-                                        <option value="4">Full stack</option>
-                                    </select>
-                                    </p>
-                                    <p class="has-arrow">
-                                    <select name="speaker" id="speaker">
-                                        <option value="1">All speakers</option>
-                                        <option value="2">john Doe</option>
-                                        <option value="3">Ralph Garcia </option>
-                                    </select>
-                                    </p>
-                                    <button type="submit">search</button>
-                                    </form>
-                    </div>
-                </section>
-                <section class="widget kopa-widget-testimonials">
-                    <h2 class="widget-title">TESTIMONIALS</h2>
-                    <div class="widget-content module-testimonials-05 js-carousel">
-                        <div class="item-testi">
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="images/testimonial/3.jpg" alt="">
-                                        </a>
-                            </div>
-                            <div class="content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus pretium rhoncus a quis</p>
-                                <a href="#">Ashiful Pappu</a>
-                            </div>
-                        </div>
-                        <div class="item-testi">
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="images/testimonial/4.jpg" alt="">
-                                        </a>
-                            </div>
-                            <div class="content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus pretium rhoncus a quis</p>
-                                <a href="#">Ashiful Pappu</a>
-                            </div>
-                        </div>
-                        <div class="item-testi">
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="images/testimonial/3.jpg" alt="">
-                                        </a>
-                            </div>
-                            <div class="content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum egetvel lacus pretium rhoncus a quis</p>
-                                <a href="#">Ashiful Pappu</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="widget widget_categories">
-                    <h2 class="widget-title">Categories</h2>
-                    <ul>
-                        <li class="cat-item">
-                            <a href="#">Biochemistry</a> (21)
-                        </li>
-                        <li class="cat-item">
-                            <a href="#">Computer Science</a> (57)
-                        </li>
-                        <li class="cat-item">
-                            <a href="#">Food Nutritions</a> (13)
-                        </li>
-                        <li class="cat-item">
-                            <a href="#">Fashion Technology</a> (48)
-                        </li>
-                        <li class="cat-item">
-                            <a href="#">Business Studies</a> (91)
-                        </li>
-                    </ul>
-                </section>
-                <section class="widget kopa-widget-social">
-                    <h2 class="widget-title">Share This Course</h2>
-                    <ul class="clearfix">
-                        <li><a href="#" class="fa fa-twitter"></a></li>
-                        <li><a href="#" class="fa fa-facebook"></a></li>
-                        <li><a href="#" class="fa fa-dribbble"></a></li>
-                        <li><a href="#" class="fa fa-instagram"></a></li>
-                        <li><a href="#" class="fa fa-pinterest"></a></li>
-                    </ul>
-                </section>
-            </aside>
-        </div>
-    </div>
 </div>
 {% endblock %}
 
 {% block script %}
-<script type="text/javascript">
-function distribute(val)
-{
-    $.post('/writings/distribute_writing_task/' + {{writing_task.id}});
-    window.location.href="/writings/view_writing_task/detail/?id=" + {{writing_task.id}};
-}
-</script>
-<script type="text/javascript">
-    $(document).ready( function() {
-                      $(':file').on('fileselect', function(event, numFiles, label) {
-                                    //console.log(numFiles);
-                                    //console.log(label);
-                                    $('#chosen_file_name_id').val(label);
-                                    });
-                      });
-</script>
-<script type="text/javascript">
-    $(document).on('change', ':file', function() {
-                   var input = $(this),
-                   numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                   label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                   input.trigger('fileselect', [numFiles, label]);});
-</script>
+
 {% endblock %}

@@ -12,8 +12,8 @@ from profiles.utils import permission_check, mentor_permission_check, student_pe
 import datetime
 import json
 from Edu123Kid.views import send_sms
+from .models import *
 
-@user_passes_test(permission_check)
 def index(request):
     user = request.user if request.user.is_authenticated() else None
     content = {
@@ -21,31 +21,75 @@ def index(request):
     }
     return render(request, 'courses/index.html', content)
 
+@user_passes_test(student_permission_check)
+def coursebase_detail(request, d):
+    user = request.user if request.user.is_authenticated() else None
+    profile = user.userprofile
+    coursebase_id = d
+    
+    if coursebase_id == '':
+        return HttpResponseRedirect(reverse('courses_index'))
+    coursebase = CourseBase.objects.get(id=d)
+
+    if request.method == 'POST':
+        
+        return HttpResponseRedirect(reverse('courses_index'))
+    
+    content = {
+        'user': user,
+        'coursebase': coursebase,}
+    return render(request, 'courses/detail.html', content)
+
+
 # 创建课程
 @user_passes_test(student_permission_check)
 def add_course(request):
     user = request.user if request.user.is_authenticated() else None
     studentprofile = StudentProfile.objects.get(userprofile=user.userprofile)
     if request.method == 'POST':
-        form = WritingTaskAddForm(request.POST,request.FILES)
-        if form.is_valid():
-            new_writing_task = WritingTask(
-                                           title=form.cleaned_data['title'],
-                                           originalfile=form.cleaned_data['originalfile'],
-                                           author=user,
-                                           publish_date=datetime.datetime.now(),
-                                           mentor_end_date=datetime.datetime.now() + datetime.timedelta(days=4),
-                                           end_date=datetime.datetime.now() + datetime.timedelta(days=5),
-                                           )
-        return HttpResponseRedirect("/writings/mywritingtasks/")
+        starttime = datetime.datetime.strptime(request.POST.get("date-time", ""), "%Y-%m-%d %H:%M")
+        new_course = Course(
+                            title=u"寒假班",
+                            student=studentprofile,
+                            start_datetime=starttime,
+                            time_span=2,
+                            )
+                            
+        new_course.save()
+        new_course.create_classes()
+        return HttpResponseRedirect("/courses/mycourses/")
     else:
-        form = WritingTaskAddForm()
+        content = {'user': user,}
+        return render(request, 'courses/add_course.html', content)
+
+# 课程列表
+@user_passes_test(permission_check)
+def my_courses(request):
+    user = request.user if request.user.is_authenticated() else None
+    studentprofile = StudentProfile.objects.get(userprofile=user.userprofile)
+    
+    course_list = Course.objects.filter(student=studentprofile)
     
     content = {
         'user': user,
-        'form': form,
-}
-    return render(request, 'writings/add_writing_task.html', content)
+        'course_list': course_list,
+    }
+#return render(request, 'courses/my_courses.html', content)
+    return render(request, '404.html', content)
+
+@user_passes_test(student_permission_check)
+def my_classes(request):
+    user = request.user if request.user.is_authenticated() else None
+    studentprofile = StudentProfile.objects.get(userprofile=user.userprofile)
+    
+    class_list = Class.objects.filter(student=studentprofile)
+    
+    content = {
+        'user': user,
+        'class_list': class_list,
+    }
+    return render(request, 'courses/my_classes.html', content)
+
 
 def view_book_list(request):
     user = request.user if request.user.is_authenticated() else None

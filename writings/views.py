@@ -15,6 +15,14 @@ import datetime
 import json
 from Edu123Kid.views import send_sms
 
+def best(request):
+    user = request.user if request.user.is_authenticated() else None
+    content = {
+        'user': user,
+    }
+    #return render(request, 'profiles/index.html', content)
+    return render(request, '404.html', content)
+
 @user_passes_test(permission_check)
 def add_book(request):
     user = request.user
