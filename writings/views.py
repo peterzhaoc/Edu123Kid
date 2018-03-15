@@ -148,31 +148,44 @@ def add_img(request):
 # 添加任务
 @user_passes_test(student_permission_check)
 def add_writing_task(request):
+    state = ''
     user = request.user if request.user.is_authenticated() else None
     studentprofile = StudentProfile.objects.get(userprofile=user.userprofile)
     if request.method == 'POST':
         form = WritingTaskAddForm(request.POST,request.FILES)
-        if form.is_valid():
-            new_writing_task = WritingTask(
-                title=form.cleaned_data['title'],
-                originalfile=form.cleaned_data['originalfile'],
-                author=user,
-                publish_date=datetime.datetime.now(),
-                mentor_end_date=datetime.datetime.now() + datetime.timedelta(days=4),
-                end_date=datetime.datetime.now() + datetime.timedelta(days=5),
-            )
-            if studentprofile.classes > 0:
-                studentprofile.classes -= 1
-                studentprofile.save()
-                new_writing_task.state = 1
-                new_writing_task.distribute()
+        if not form.is_valid():
+            if not form.cleaned_data['originalfile']:
+                state = u'未选择文件'
+                content = {
+                    'state': state,
+                    'user': user,
+                    'form': form,
+                    }
+                return render(request, 'writings/add_writing_task.html', content)
+        form_title = form.cleaned_data.get('title','')
+        if not form_title:
+            form_title = u'未命名' + datetime.datetime.now().strftime("%Y%m%d%H%M%S") 
+        new_writing_task = WritingTask(
+            title=form_title,
+            originalfile=form.cleaned_data['originalfile'],
+            author=user,
+            publish_date=datetime.datetime.now(),
+            mentor_end_date=datetime.datetime.now() + datetime.timedelta(days=4),
+            end_date=datetime.datetime.now() + datetime.timedelta(days=5),
+        )
+        if studentprofile.classes > 0:
+            studentprofile.classes -= 1
+            studentprofile.save()
+            new_writing_task.state = 1
+            new_writing_task.distribute()
 
-            new_writing_task.save()
+        new_writing_task.save()
         return HttpResponseRedirect("/writings/mywritingtasks/")
     else:
         form = WritingTaskAddForm()
 
     content = {
+        'state': state,
         'user': user,
         'form': form,
     }
@@ -199,7 +212,7 @@ def view_writing_task_list(request):
         keyword = request.POST.get('keyword', '')
         writing_task_list = WritingTask.objects.filter(title__contains=keyword,state=1)
     
-    paginator = Paginator(writing_task_list, 10)
+    paginator = Paginator(writing_task_list, 50)
     page = request.GET.get('page')
     try:
         writing_task_list = paginator.page(page)
@@ -228,7 +241,8 @@ def my_writing_tasks(request):
     choices = WritingTask.STATE_CHOICES
     state_list = []
     for i in choices:
-        state_list.append(i[1])
+        if i[0] > 1:
+            state_list.append(i[1])
     
     query_state_readable = request.GET.get('state', 'all')
     if query_state_readable == 'all':
@@ -256,7 +270,7 @@ def my_writing_tasks(request):
         writing_task_list = WritingTask.objects.filter(Q(editor=mentorprofile,title__contains=keyword) | Q(finaleditor=mentorprofile,title__contains=keyword))
         query_state = 'all'
     
-    paginator = Paginator(writing_task_list, 5)
+    paginator = Paginator(writing_task_list, 50)
     page = request.GET.get('page')
     try:
         writing_task_list = paginator.page(page)

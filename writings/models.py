@@ -34,15 +34,17 @@ class WritingTask(models.Model):
     title = models.CharField(blank=True,null=True,max_length=128)
     originalfile = models.FileField(blank=True,null=True,upload_to='static/file')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    publish_date = models.DateTimeField()
-    mentor_end_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    publish_date = models.DateTimeField(verbose_name='上传时间')
+    mentor_end_date = models.DateTimeField(verbose_name='导师截止时间')
+    end_date = models.DateTimeField(verbose_name='终审截止时间')
     category = models.CharField(blank=True,null=True,max_length=128)
     state = models.IntegerField(blank=True,null=True,verbose_name='状态',choices=STATE_CHOICES,default=0)
+    pay = models.IntegerField(default=30,verbose_name='工资')
     editor = models.ForeignKey(MentorProfile,blank=True,null=True,related_name='editor')
     editedfile = models.FileField(blank=True,null=True,upload_to='static/file')
     finaleditor = models.ForeignKey(MentorProfile,blank=True,null=True,related_name='finaleditor')
     finalfile = models.FileField(blank=True,null=True,upload_to='static/file')
+    
 
     class META:
         ordering = ['state']

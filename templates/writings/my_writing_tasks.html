@@ -49,6 +49,7 @@
                             <th>作者</th>
                             <th>提交日期</th>
                             <th>截止日期</th>
+                            <th>工资</th>
                             <th>状态</th>
                             <th>批改导师</th>
                             <th>终审导师</th>
@@ -59,16 +60,25 @@
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td><a href="/writings/writingtask/detail/{{ writing_task.id }}">{{ writing_task.title }}</a></td>
-                            <td>{{ writing_task.author }}</td>
+                            <td>{{ writing_task.author.userprofile.nickname }}</td>
                             <td>{{ writing_task.publish_date|date:"Y-m-d" }}</td>
                             {% if type %}
                             <td>{{ writing_task.mentor_end_date|date:"Y-m-d" }}</td>
                             {% else %}
                             <td>{{ writing_task.end_date|date:"Y-m-d" }}</td>
                             {% endif %}
+                            <td>{{ writing_task.pay }}</td>
                             <td>{{ writing_task.get_state_display }}</td>
+                            {% if writing_task.editor %}
                             <td>{{ writing_task.editor }}</td>
+                            {% else %}
+                            <td>无</td>
+                            {% endif %}
+                            {% if writing_task.editor %}
                             <td>{{ writing_task.finaleditor }}</td>
+                            {% else %}
+                            <td>无</td>
+                            {% endif %}
                         </tr>
                         {% empty %}
                         <tr>

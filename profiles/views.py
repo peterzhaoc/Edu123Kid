@@ -177,7 +177,8 @@ def signup2(request):
 def login(request):
     user = request.user if request.user.is_authenticated() else None
     if user:
-        return HttpResponseRedirect(reverse('user_profile'))
+    #return HttpResponseRedirect(reverse('user_profile'))
+        return HttpResponseRedirect(reverse('my_writing_tasks'))
     elif request.method == 'GET':
         state = request.GET.get('state', '')
         content = {
