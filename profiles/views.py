@@ -27,7 +27,7 @@ def index(request):
         'user': user,
     }
 #return render(request, 'profiles/index.html', content)
-    return HttpResponseRedirect(reverse('my_writing_tasks'))
+    return render(request, '404.html', content)
 
 def blog(request):
     user = request.user if request.user.is_authenticated() else None
