@@ -82,7 +82,7 @@ def signup(request):
     state = request.GET.get('state', '')
     user = request.user if request.user.is_authenticated() else None
     if user:
-        return HttpResponseRedirect(reverse('user_profile'))
+        return HttpResponseRedirect(reverse('my_writing_tasks'))
     elif request.method == 'POST':
         if request.POST["verification_code"] == request.session.get("verification_code", default=None):
             newuser = User.objects.filter(username=request.POST["phone_number"])
@@ -134,7 +134,7 @@ def set_password(request):
             usertype.save()
             profile.save()
             request.session.set_expiry(1800)
-            return HttpResponseRedirect(reverse('user_profile'))
+            return HttpResponseRedirect(reverse('my_writing_tasks'))
         content ={'user': None,'state': state,}
         return render(request, 'profiles/set_password.html', content)
     else:
@@ -144,7 +144,7 @@ def set_password(request):
 def signup2(request):
     user = request.user if request.user.is_authenticated() else None
     if user:
-        return HttpResponseRedirect(reverse('homepage'))
+        return HttpResponseRedirect(reverse('my_writing_tasks'))
     state = None
     form = UserForm1()
     if request.method == 'POST':
@@ -199,7 +199,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('homepage'))
+    return HttpResponseRedirect(reverse('my_writing_tasks'))
 
 
 @login_required
