@@ -27,7 +27,7 @@ def index(request):
         'user': user,
     }
 #return render(request, 'profiles/index.html', content)
-    return render(request, '404.html', content)
+    return HttpResponseRedirect(reverse('my_writing_tasks'))
 
 def blog(request):
     user = request.user if request.user.is_authenticated() else None
@@ -35,7 +35,7 @@ def blog(request):
         'user': user,
     }
     #return render(request, 'profiles/index.html', content)
-    return render(request, '404.html', content)
+    return HttpResponseRedirect(reverse('my_writing_tasks'))
 
 def about(request):
     user = request.user if request.user.is_authenticated() else None
@@ -43,7 +43,7 @@ def about(request):
         'user': user,
     }
     #return render(request, 'profiles/index.html', content)
-    return render(request, '404.html', content)
+    return HttpResponseRedirect(reverse('my_writing_tasks'))
 
 '''
 # 未使用

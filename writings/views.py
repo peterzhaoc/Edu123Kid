@@ -164,11 +164,11 @@ def add_writing_task(request):
                 return render(request, 'writings/add_writing_task.html', content)
         form_title = form.cleaned_data.get('title','')
         if not form_title:
-            form_title = u'未命名' + datetime.datetime.now().strftime("%Y%m%d%H%M%S") 
+            form_title = studentprofile.userprofile.nickname + datetime.datetime.now().strftime("%Y%m%d%H%M%S")
         new_writing_task = WritingTask(
             title=form_title,
             originalfile=form.cleaned_data['originalfile'],
-            author=user,
+            author=studentprofile,
             publish_date=datetime.datetime.now(),
             mentor_end_date=datetime.datetime.now() + datetime.timedelta(days=4),
             end_date=datetime.datetime.now() + datetime.timedelta(days=5),
@@ -254,10 +254,11 @@ def my_writing_tasks(request):
                 break
 
     if type == 0:
+        studentprofile = StudentProfile.objects.get(userprofile=profile)
         if (query_state == 'all'):
-            writing_task_list = WritingTask.objects.filter(author=user)
+            writing_task_list = WritingTask.objects.filter(author=studentprofile)
         else:
-            writing_task_list = WritingTask.objects.filter(author=user).filter(state=query_state)
+            writing_task_list = WritingTask.objects.filter(author=studentprofile).filter(state=query_state)
     else:
         mentorprofile = MentorProfile.objects.get(userprofile=profile)
         if (query_state == 'all'):
