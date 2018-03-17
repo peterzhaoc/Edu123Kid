@@ -60,7 +60,7 @@
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td><a href="/writings/writingtask/detail/{{ writing_task.id }}">{{ writing_task.title }}</a></td>
-                            <td>{{ writing_task.author.userprofile.nickname }}</td>
+                            <td>{{ writing_task.author }}</td>
                             <td>{{ writing_task.publish_date|date:"Y-m-d" }}</td>
                             {% if type %}
                             <td>{{ writing_task.mentor_end_date|date:"Y-m-d" }}</td>
