@@ -11,9 +11,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'iw06g3zbjko)_0h&d&byv%=&h7cf58x-x+%gc1k82w!0xp+ksm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = True
 #VAPTCHAvid, VAPTCHAkey = '5a1b8675a485fe214ce06f63', '5c8253b6c0c74f708c998d64789d1b66'
-DEBUG = False
+#DEBUG = False
 VAPTCHAvid, VAPTCHAkey = '5a5b450da48617214c19f54b', 'ed2c189667de4d48b191542676e5136a'
 
 ALLOWED_HOSTS = [u'120.77.35.153',u'127.0.0.1',u'0.0.0.0',u'localhost']
