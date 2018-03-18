@@ -69,8 +69,8 @@ def get_verification_code(request):
     if request.method == 'POST':
         verification_code = generate_verification_code()
         params = "{\"code\":\"" + verification_code + "\",\"product\":\"云通信\"}"
-        #print send_sms(request.POST['phone_number'], "越读悦写", "SMS_112465062", params)
-        print verification_code
+        print send_sms(request.POST['phone_number'], "越读悦写", "SMS_112465062", params)
+        #print verification_code
         request.session["verification_code"] = verification_code
         request.session.set_expiry(300)
         #t = threading.Thread(target=session_delete, args=(request,))
