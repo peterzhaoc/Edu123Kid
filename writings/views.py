@@ -154,7 +154,7 @@ def add_writing_task(request):
     if request.method == 'POST':
         form = WritingTaskAddForm(request.POST,request.FILES)
         if not form.is_valid():
-            if not form.cleaned_data['originalfile']:
+            if not form.cleaned_data.get('originalfile',''):
                 state = u'未选择文件'
                 content = {
                     'state': state,
