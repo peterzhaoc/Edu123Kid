@@ -82,7 +82,7 @@ def writing_task_detail(request,d):
     profile = user.userprofile
     type = profile.type
     writing_task_id = d
-    
+    state = ''
     if writing_task_id == '':
         return HttpResponseRedirect(reverse('view_writing_task_list'))
     writing_task = WritingTask.objects.get(id=d)
@@ -97,19 +97,33 @@ def writing_task_detail(request,d):
         elif writing_task.state == 3 and writing_task.finaleditor == mentorprofile:
             upload = True
 
-    
     if request.method == 'POST':
-        if writing_task.state == 2:
-            writing_task.editedfile = request.FILES.get('chosen_file',None)
-            writing_task.final_distribute()
-            writing_task.save()
-        elif writing_task.state == 3:
-            writing_task.finalfile = request.FILES.get('chosen_file',None)
-            writing_task.state = 4
-            writing_task.save()
-        return HttpResponseRedirect(reverse('my_writing_tasks'))
+        if not request.FILES.get('chosen_file',None):
+            if writing_task.state == 2:
+                writing_task.editedfile = request.FILES.get('chosen_file',None)
+                writing_task.final_distribute()
+                writing_task.save()
+                mentorprofile.isvalid = True
+                mentorprofile.save()
+            elif writing_task.state == 3:
+                writing_task.finalfile = request.FILES.get('chosen_file',None)
+                writing_task.state = 4
+                writing_task.save()
+            return HttpResponseRedirect(reverse('my_writing_tasks'))
+        else:
+            state = u'未选择文件'
+            content = {
+                'state': state,
+                'upload': upload,
+                'type': type,
+                'user': user,
+                'writing_task': writing_task,
+                'mentorprofile': mentorprofile,
+            }
+            return render(request, 'writings/detail.html', content)
 
     content = {
+        'state': state,
         'upload': upload,
         'type': type,
         'user': user,

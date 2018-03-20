@@ -29,6 +29,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                {% if state %}
+                <div class="well">
+                    <h2 class="text-danger text-center">{{state}}</h2>
+                </div>
+                {% endif %}
                 <div class="well">
                 <form method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
                     {% csrf_token %}
