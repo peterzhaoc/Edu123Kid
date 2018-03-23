@@ -90,9 +90,8 @@ class WritingTask(models.Model):
             phonenumber = self.editor.userprofile.user.username
             try:
                 params = "{\"title\":\"" + self.title + "\",\"product\":\"云通信\"}"
-                if phonenumber == '18268884372':
-                    print send_sms(phonenumber, u'越读悦写'.encode("utf8"), "SMS_120120626", params.encode("utf8"))
-                    return True
+                print send_sms(phonenumber, u'越读悦写'.encode("utf8"), "SMS_120120626", params.encode("utf8"))
+                return True
             except:
                 return False
         else:
