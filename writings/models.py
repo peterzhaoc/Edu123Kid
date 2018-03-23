@@ -85,10 +85,18 @@ class WritingTask(models.Model):
             return False
 
     def expire_remind(self):
-        phonenumber = self.editor.userprofile.user.username
-        params = "{\"title\":\"" + self.title + "\",\"product\":\"云通信\"}"
-        print send_sms(phonenumber, u'越读悦写'.encode("utf8"), "SMS_120120626", params.encode("utf8"))
-        return True
+        mentor = self.editor
+        if mentor:
+            phonenumber = self.editor.userprofile.user.username
+            print phonenumber + phonenumber + phonenumber
+            try:
+                params = "{\"title\":\"" + self.title + "\",\"product\":\"云通信\"}"
+                print send_sms(phonenumber, u'越读悦写'.encode("utf8"), "SMS_120120626", params.encode("utf8"))
+                return True
+            except:
+                return False
+        else:
+            return False
 
 class Img(models.Model):
     name = models.CharField(max_length=128)
