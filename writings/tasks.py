@@ -21,7 +21,7 @@ app.conf.update(
                 CELERYBEAT_SCHEDULE = {
                 'check_due_writing_tasks': {
                 'task': 'writings.tasks.writing_task_expire_remind',
-                'schedule': crontab(hour=22, minute=35),
+                'schedule': crontab(hour=22, minute=40),
                 },
                 }
                 )
