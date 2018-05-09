@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
+# 用户档案
 class UserProfile(models.Model):
     TYPE_CHOICES = [
                     (0, u'学生'),
@@ -21,6 +22,7 @@ class UserProfile(models.Model):
     
     def __unicode__(self):
         return self.nickname
+
 '''
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

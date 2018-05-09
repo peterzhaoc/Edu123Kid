@@ -29,7 +29,8 @@ class WritingTask(models.Model):
     (1, u'未审核'),
     (2, u'批改中'),
     (3, u'终审中'),
-    (4, u'已完成'),
+    (4, u'终审完成'),
+    (5, u'已发回'),
     ]
     title = models.CharField(blank=True,null=True,max_length=128)
     originalfile = models.FileField(blank=True,null=True,upload_to='static/file')

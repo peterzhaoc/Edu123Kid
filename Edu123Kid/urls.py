@@ -5,6 +5,7 @@ from django.conf import settings
 from Edu123Kid.views import *
 
 urlpatterns = [
+    #url('', include('social_django.urls', namespace='social'))
     url(r'^admin/', admin.site.urls),
     url(r'^test/', test, name='test'),
     url(r'', include('home.urls')),

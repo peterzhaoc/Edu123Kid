@@ -44,7 +44,7 @@
                     <div class="input-group">
                         <label class="input-group-btn">
                             <span class="btn btn-primary">
-                                上传文件<input type="file" style="display: none;" multiple="" id="id_originalfile" name="originalfile">
+                                上传文件<input type="file" style="display: none;" multiple id="id_originalfile" name="originalfile">
                                     </span>
                         </label>
                         <input type="text" class="form-control" readonly="" id="chosen_file_name_id">
@@ -65,17 +65,32 @@
 <script type="text/javascript">
     $(document).ready( function() {
                       $(':file').on('fileselect', function(event, numFiles, label) {
-                                    //console.log(numFiles);
-                                    //console.log(label);
+                                    console.log(numFiles);
+                                    console.log(label);
                                     $('#chosen_file_name_id').val(label);
                                     });
                       });
     </script>
 <script type="text/javascript">
     $(document).on('change', ':file', function() {
-                   var input = $(this),
-                   numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                   var input = $(this);
+                   var t_files = input.get(0).files;
+                   var str = '';
+                   for (var i = 0, len = t_files.length; i < len; i++) {
+                   console.log(t_files[i]);
+                   str += t_files[i].name;
+                   if (i != len - 1)
+                   {
+                   str += ', ';
+                   };
+                   
+                   
+                   };
+                   
+                   
+                   numFiles = input.get(0).files ? input.get(0).files.length : 1;
                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-                                                                   input.trigger('fileselect', [numFiles, label]);});
+                   input.trigger('fileselect', [numFiles, label]);
+                   });
     </script>
 {% endblock %}
