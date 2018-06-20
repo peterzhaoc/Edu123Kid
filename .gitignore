@@ -52,3 +52,17 @@ docs/_build/
 
 # PyBuilder
 target/
+courses/migrations/0001_initial.py
+courses/migrations/0001_initial.py
+courses/migrations/0002_auto_20180123_0014.py
+writings/migrations/0001_initial.py
+profiles/migrations/0001_initial.py
+media/static/file/auto_Z5wgWJQ.py
+media/static/file/auto_XxCDj4B.py
+media/static/file/auto_x51I1xb.py
+media/static/file/auto_RrJNyKH.py
+media/static/file/auto_mMrzdO2.py
+media/static/file/auto_EZhVjhc.py
+media/static/file/auto_4bKfn5v.py
+courses/migrations/0008_coursebase_price.py
+courses/migrations/0001_initial.py

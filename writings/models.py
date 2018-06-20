@@ -48,7 +48,7 @@ class WritingTask(models.Model):
     
 
     class META:
-        ordering = ['state']
+        ordering = ['-end_date']
 
     def __unicode__(self):
         return self.title

@@ -11,10 +11,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'iw06g3zbjko)_0h&d&byv%=&h7cf58x-x+%gc1k82w!0xp+ksm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-#VAPTCHAvid, VAPTCHAkey = '5a1b8675a485fe214ce06f63', '5c8253b6c0c74f708c998d64789d1b66'
-DEBUG = False
-VAPTCHAvid, VAPTCHAkey = '5a5b450da48617214c19f54b', 'ed2c189667de4d48b191542676e5136a'
+DEBUG = True
+VAPTCHAvid, VAPTCHAkey = '5a1b8675a485fe214ce06f63', '5c8253b6c0c74f708c998d64789d1b66'
+#DEBUG = False
+#VAPTCHAvid, VAPTCHAkey = '5a5b450da48617214c19f54b', 'ed2c189667de4d48b191542676e5136a'
 
 ALLOWED_HOSTS = [u'120.77.35.153',u'127.0.0.1',u'0.0.0.0',u'localhost']
 
@@ -31,10 +31,12 @@ INSTALLED_APPS = [
     'courses.apps.CoursesConfig',
     'profiles.apps.ProfilesConfig',
     'home.apps.HomeConfig',
+                  #'enrollments.apps.EnrollmentsConfig',
                   
     # 第三方插件
     # ...
     # ...
+    #'social_django',
     'debug_toolbar.apps.DebugToolbarConfig',
     'captcha',
     'aliyunsdkdysmsapi',
@@ -156,5 +158,9 @@ AUTH_PROFILE_MODULE = 'profiles.UserProfile'
 BROKER_URL = 'redis://127.0.0.1:6379/0'
 BROKER_TRANSPORT = 'redis'
 
+#SOCIAL_AUTH_WEIXIN_KEY = 'wx5db19ad8e5bc2a4c'   #微信
+#SOCIAL_AUTH_WEIXIN_SECRET = '22df98caf40a958fd5dba0f95b153682'  #微信
+#SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/writings/mywritingtasks/'
 #import djcelery
 #djcelery.setup_loader()
+

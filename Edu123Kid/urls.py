@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'', include('writings.urls')),
     url(r'', include('profiles.urls')),
     url(r'', include('courses.urls')),
+    url(r'', include('enrollments.urls')),
     #url(r'^captcha/', include('captcha.urls')),
     url(r'^getVaptcha/', get_vaptcha),
     url(r'^validate/', validate),

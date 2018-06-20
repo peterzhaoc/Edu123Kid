@@ -272,19 +272,19 @@ def my_writing_tasks(request):
     if type == 0:
         studentprofile = StudentProfile.objects.get(userprofile=profile)
         if (query_state == 'all'):
-            writing_task_list = WritingTask.objects.filter(author=studentprofile)
+            writing_task_list = WritingTask.objects.filter(author=studentprofile).order_by('-end_date', 'state')
         else:
-            writing_task_list = WritingTask.objects.filter(author=studentprofile).filter(state=query_state)
+            writing_task_list = WritingTask.objects.filter(author=studentprofile).filter(state=query_state).order_by('-end_date', 'state')
     else:
         mentorprofile = MentorProfile.objects.get(userprofile=profile)
         if (query_state == 'all'):
-            writing_task_list = WritingTask.objects.filter(Q(editor=mentorprofile) | Q(finaleditor=mentorprofile))
+            writing_task_list = WritingTask.objects.filter(Q(editor=mentorprofile) | Q(finaleditor=mentorprofile)).order_by('-end_date', 'state')
         else:
-            writing_task_list = WritingTask.objects.filter(Q(editor=mentorprofile) | Q(finaleditor=mentorprofile)).filter(state=query_state)
+            writing_task_list = WritingTask.objects.filter(Q(editor=mentorprofile) | Q(finaleditor=mentorprofile)).filter(state=query_state).order_by('-end_date', 'state')
 
     if request.method == 'POST':
         keyword = request.POST.get('keyword', '')
-        writing_task_list = WritingTask.objects.filter(Q(editor=mentorprofile,title__contains=keyword) | Q(finaleditor=mentorprofile,title__contains=keyword))
+        writing_task_list = WritingTask.objects.filter(Q(editor=mentorprofile,title__contains=keyword) | Q(finaleditor=mentorprofile,title__contains=keyword)).order_by('-end_date', 'state')
         query_state = 'all'
     
     paginator = Paginator(writing_task_list, 50)

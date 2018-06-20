@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}报名页面{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href={% static 'css/demo.css'%}>
+    <link rel="stylesheet" href={% static 'css/common.css'%}>
+{% endblock %}
+{% block contentbody %}
+<div class="article embed article-active">
+    <div class="panel" style="display:block">
+        <div class="login-content">
+                <form method="POST" role="form" class="form-signin" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="username"><i class="fa fa-user"></i><input id="id_user_name" required name="username" type="text" class="form-control" value="" placeholder="学生姓名"></div>
+                    <div class="password"><i class="fa fa-key"></i><input type="password" name="password" id="id_password" required class="form-control" value="" placeholder="联系电话"></div>
+                    <div name="submit-div" class="code" style="display: none;">
+                        <a name="btn-login" id="id_btn_login" class="btn-login">预约报名</a>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+                    <img src={% static 'img/background/15.jpg'%} alt="">
+{% endblock %}
+{% block script %}
+
+{% endblock %}
